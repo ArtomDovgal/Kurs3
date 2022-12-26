@@ -26,7 +26,7 @@ public class Passenger {
   private String lastName;
   private String phone;
 
-  @OneToMany(mappedBy = "flight")
+  @OneToMany(mappedBy = "passenger")
   private Set<Ticket> tickets = new HashSet<>();
 
   public Passenger() {
