@@ -29,6 +29,14 @@ public class FlightService {
     }
 
     public Flight save(Flight flight) {
+        //Set<Transport> transports = flight.getTransports();
+
+        //можливо замінить на емпті
+//        if(transports != null){
+//            for(Transport transport : transports){
+//                transport
+//            }
+//        }
 
         return flightRepository.save(flight);
     }
@@ -57,7 +65,7 @@ public class FlightService {
         oldFlight.setArrivalPoint(flight.getArrivalPoint());
         oldFlight.setArrivalTime(flight.getArrivalTime());
         oldFlight.setDepartureTime(flight.getDepartureTime());
-        oldFlight.setDepartutePoint(flight.getDepartutePoint());
+        oldFlight.setDeparturePoint(flight.getDeparturePoint());
         oldFlight.setTransports(flight.getTransports());
         oldFlight.setTickets(flight.getTickets());
         return flightRepository.save(oldFlight);
