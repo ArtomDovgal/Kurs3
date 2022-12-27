@@ -21,7 +21,9 @@ public class Flight {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long flightId;
 
-  private String departutePoint;
+  @Column(name = "departutePoint")
+  private String departurePoint;
+
   private String arrivalPoint;
   
   ///////////////
@@ -33,8 +35,17 @@ public class Flight {
   private Set<Ticket> tickets = new HashSet<>();
 
   private long numberOfPassengers;
-  private long transportId;
+
+  @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+  @JoinTable(name="flight_transport",joinColumns = {
+          @JoinColumn(name = "flight_id",referencedColumnName = "flightId")
+  },
+  inverseJoinColumns = {
+          @JoinColumn(name="transport_id",referencedColumnName = "flightId")
+  })
+  private Set<Transport> transports=new HashSet<>();
 
   public Flight() {
   }
+
 }
