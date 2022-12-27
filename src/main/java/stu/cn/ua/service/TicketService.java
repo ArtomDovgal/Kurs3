@@ -1,14 +1,17 @@
-package stu.cn.ua.Service;
+package stu.cn.ua.service;
 
+import org.springframework.stereotype.Service;
 import stu.cn.ua.domain.Flight;
 import stu.cn.ua.domain.Passenger;
 import stu.cn.ua.domain.Ticket;
-import stu.cn.ua.persistene.FlightRepository;
-import stu.cn.ua.persistene.PassengerRepository;
-import stu.cn.ua.persistene.TicketRepository;
+import stu.cn.ua.persistence.FlightRepository;
+import stu.cn.ua.persistence.PassengerRepository;
+import stu.cn.ua.persistence.TicketRepository;
 
 import java.util.Set;
 
+
+@Service
 public class TicketService {
 private final TicketRepository ticketRepository;
 private final PassengerRepository passengerRepository;

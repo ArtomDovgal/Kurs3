@@ -1,10 +1,12 @@
-package stu.cn.ua.persistene;
+package stu.cn.ua.persistence;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import stu.cn.ua.domain.Flight;
 import stu.cn.ua.domain.Passenger;
 
 import java.util.Set;
+@Repository
 
 public interface PassengerRepository extends CrudRepository<Passenger,Long> {
 

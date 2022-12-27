@@ -18,7 +18,9 @@ public class TransportCategory {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long transportCategoryId;
-  private String vechicleType;
+
+  @Column(name = "vechicleType")
+  private String vehicleType;
   private long theNumberOfSeatsInThisCategory;
   private String model;
 

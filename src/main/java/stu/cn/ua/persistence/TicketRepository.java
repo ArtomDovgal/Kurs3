@@ -1,4 +1,4 @@
-package stu.cn.ua.persistene;
+package stu.cn.ua.persistence;
 
 import org.springframework.data.repository.CrudRepository;
 import stu.cn.ua.domain.Ticket;
