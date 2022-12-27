@@ -4,10 +4,12 @@ import org.springframework.stereotype.Service;
 import stu.cn.ua.domain.Flight;
 import stu.cn.ua.domain.Passenger;
 import stu.cn.ua.domain.Ticket;
+import stu.cn.ua.domain.Transport;
 import stu.cn.ua.persistence.FlightRepository;
 import stu.cn.ua.persistence.PassengerRepository;
 import stu.cn.ua.persistence.TicketRepository;
 
+import java.util.Arrays;
 import java.util.Set;
 
 
@@ -37,11 +39,14 @@ private final FlightRepository flightRepository;
         Flight flight = flightRepository.findFlightByFlightId(idFlight);
 
         if(passenger != null && flight != null){
-            passenger.getTickets().add(ticket);
-            passengerRepository.save(passenger);
-            flight.getTickets().add(ticket);
-            flightRepository.save(flight);
-
+            Transport[] arr = (Transport[]) flight.getTransports().toArray();
+            Integer numberOfSeats = Arrays.stream(arr).findFirst().get().getNumberOfSeats();
+            if(flight.getNumberOfPassengers() < numberOfSeats) {
+                passenger.getTickets().add(ticket);
+                passengerRepository.save(passenger);
+                flight.getTickets().add(ticket);
+                flightRepository.save(flight);
+            }
 
         }else{
             return null;

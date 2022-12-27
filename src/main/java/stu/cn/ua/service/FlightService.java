@@ -43,7 +43,13 @@ public class FlightService {
 
     public void deleteById(Long id) {
         Flight flight = flightRepository.findFlightByFlightId(id);
+        for(Ticket ticket : flight.getTickets()){
+          Ticket chosenTicket = ticketRepository.findTicketByTicketId(ticket.getTicketId());
+          chosenTicket.setFlight(null);
+          ticketRepository.deleteById(chosenTicket.getTicketId());
+        }
         flight.getTickets().clear();
+
         flight.getTransports().clear();
         flightRepository.save(flight);
         flightRepository.deleteById(id);

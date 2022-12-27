@@ -21,11 +21,11 @@ public class TransportCategoryService {
     {
         return transportCategoryRepository.save(transportCategory);
     }
-    private TransportCategory findTransportById(Long id)
+    private TransportCategory findTransportCategoryById(Long id)
     {
         return transportCategoryRepository.findTransportCategoryByTransportCategoryId(id);
     }
-    private void deleteTransportById(Long id)
+    private void deleteTransportCategoryById(Long id)
     {
         TransportCategory transportCategory= transportCategoryRepository.findTransportCategoryByTransportCategoryId(id);
         if(transportCategory!=null)

@@ -17,9 +17,11 @@ public class TransportService {
         this.transportCategoryRepository = transportCategoryRepository;
         this.transportRepository = transportRepository;
     }
+
     private Transport save(Transport transport)
     {
      Long transportCategoryId= transport.getTransportCategory().getTransportCategoryId();
+
         if(transportCategoryId!=null) {
             TransportCategory transportCategory = transportCategoryRepository.
                     findTransportCategoryByTransportCategoryId(transportCategoryId);
@@ -30,10 +32,13 @@ public class TransportService {
                 transportCategoryRepository.save(transportCategory);
             }
             else
-                transport.setTransportCategory(null);
-        }
+                return null;
+        }else
+            return null;
+
         return transportRepository.save(transport);
     }
+
     private Transport findTransportById(Long id)
     {
         return transportRepository.findTransportByTransportId(id);
@@ -45,8 +50,10 @@ public class TransportService {
         {
             TransportCategory transportCategory= transportToDelete.getTransportCategory();
             transportCategory.getTransports().remove(transportToDelete);
+            transportCategoryRepository.save(transportCategory);
+            transportRepository.deleteByTransportId(id);
         }
-        transportRepository.deleteByTransportId(id);
+
     }
     private Set<Transport> findAll()
     {
