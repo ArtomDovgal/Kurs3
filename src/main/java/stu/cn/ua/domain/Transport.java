@@ -19,7 +19,7 @@ public class Transport {
   private long numberOfSeats;
 
   @ManyToOne
-  @JoinColumn(name = "trasportCateforyId")
+  @JoinColumn(name = "trasportCategoryId")
   private TransportCategory transportCategory;
   private long numberOfWorkers;
 

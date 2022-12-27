@@ -37,7 +37,6 @@ public class FlightService {
         Flight flight = flightRepository.findFlightByFlightId(id);
         flight.getTickets().clear();
         flight.getTransports().clear();
-        ;
         flightRepository.save(flight);
         flightRepository.deleteById(id);
     }
@@ -47,6 +46,7 @@ public class FlightService {
         Set<Ticket> tickets = new HashSet<>();
         Set<Transport> transports = new HashSet<>();
         Flight oldFlight = flightRepository.findFlightByFlightId(flight.getFlightId());
+
         //ТОЧНО ПЕРЕРОБИТЬ
         for (Ticket ticket : oldFlight.getTickets()) {
             tickets.add(ticket);
