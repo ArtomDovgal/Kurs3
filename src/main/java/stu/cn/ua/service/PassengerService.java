@@ -33,4 +33,8 @@ public class PassengerService {
     passenger.getTickets().clear();
     passengerRepository.deleteById(passenger.getPassengerId());
     }
+
+    public Set<Passenger> findAll() {
+        return passengerRepository.findAll();
+    }
 }
