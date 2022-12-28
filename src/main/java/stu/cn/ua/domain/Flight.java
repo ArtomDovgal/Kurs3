@@ -41,7 +41,7 @@ public class Flight {
           @JoinColumn(name = "flight_id",referencedColumnName = "flightId")
   },
           inverseJoinColumns = {
-                  @JoinColumn(name="transport_id",referencedColumnName = "flightId")
+                  @JoinColumn(name="transport_id",referencedColumnName = "transportId")
           })
   private Set<Transport> transports=new HashSet<>();
 

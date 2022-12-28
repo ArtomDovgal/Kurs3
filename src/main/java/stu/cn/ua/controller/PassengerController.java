@@ -11,13 +11,10 @@ public class PassengerController {
 
     @Autowired
     PassengerService passengerService;
-
-    @GetMapping
-    public String getAll(Model model){
-
+    @GetMapping({"","/","passengers"})
+    public String getPassengers(Model model){
         model.addAttribute("passengers",passengerService.findAll());
-
-        return "passengers";
+        return "passenger";
   }
 
 }

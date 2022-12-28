@@ -13,6 +13,6 @@ public interface PassengerRepository extends CrudRepository<Passenger,Long> {
     Passenger findPassengerByPassengerId(Long id);
     void deleteByPassengerId(Long id);
     Set<Passenger> findAll();
-    Set<Flight> findAllByFirstName();
+    Set<Passenger> findAllByFirstName(String firstName);
 
 }
