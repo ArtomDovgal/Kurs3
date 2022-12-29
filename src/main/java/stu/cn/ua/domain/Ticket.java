@@ -24,8 +24,13 @@ public class Ticket {
   @Enumerated(EnumType.STRING)
   private TicketCategory ticketCategory;
 
+  @Column(name = "date_of_departure_on_the_ticket")
   private Date dateOfDepartueOnTheTicket;
+  @Column(name = "date_and_time_of_ticket_sale")
+
   private Date dateAndTimeOfTiketSale;
+  @Column(name = "date_and_time_of_ticket_booking")
+
   private Date dateAndTimeOfTicketBooking;
   private long price;
 
