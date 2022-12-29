@@ -15,6 +15,6 @@ public class PassengerController {
     public String getPassengers(Model model){
         model.addAttribute("passengers",passengerService.findAll());
         return "passenger";
-  }
+    }
 
 }
