@@ -35,6 +35,7 @@ public class Ticket {
 
   @ManyToOne
   @JoinColumn(name = "passengerId")
+
   private Passenger passenger;
 
   public Ticket() {

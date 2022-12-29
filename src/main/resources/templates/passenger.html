@@ -25,13 +25,13 @@
                 <a class="nav-link" href="#">Pricing</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Dropdown link
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" th:text="First" href="#">Action</a>
+                    <a class="dropdown-item" th:text="Second" href="#">Another action</a>
+                    <a class="dropdown-item" th:text="dsfsfs" href="#">Something else here</a>
                 </div>
             </li>
         </ul>
@@ -56,7 +56,8 @@
         <td scope="col" th:text="${passenger.getLastName()}"></td>
         <td scope="col" th:text="${passenger.getPhone()}"></td>
         <td scope="col" th:text="${passenger.getPrivileges()}"></td>
-        <td scope="col" ><input type="button" value="Remove"></td>
+        <td scope="col" ><input type="button" value="Remove">
+       <a href="#" th:href="@{'/passenger/delete/' + ${passenger.getPassengerId()}}">View</a></td>
     </tr>
     <tr scope="row">
         <td scope="col" ></td>

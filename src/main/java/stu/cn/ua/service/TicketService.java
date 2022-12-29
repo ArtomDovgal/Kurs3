@@ -1,6 +1,7 @@
 package stu.cn.ua.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import stu.cn.ua.domain.Flight;
 import stu.cn.ua.domain.Passenger;
 import stu.cn.ua.domain.Ticket;
@@ -59,7 +60,8 @@ private final FlightRepository flightRepository;
     return ticketRepository.save(ticket);
     }
 
-    public void deleteById(Long id){
+    @Transactional
+    public void deleteByTicketId(Long id){
         Ticket ticket = ticketRepository.findTicketByTicketId(id);
         Passenger passenger = ticket.getPassenger();
         Flight flight = ticket.getFlight();
