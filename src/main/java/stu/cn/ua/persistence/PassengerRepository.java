@@ -14,5 +14,5 @@ public interface PassengerRepository extends CrudRepository<Passenger,Long> {
     void deleteByPassengerId(Long id);
     Set<Passenger> findAll();
     Set<Passenger> findAllByFirstName(String firstName);
-
+    Passenger save(Passenger passenger);
 }

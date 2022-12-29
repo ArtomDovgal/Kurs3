@@ -7,6 +7,7 @@ import stu.cn.ua.domain.Ticket;
 import stu.cn.ua.persistence.PassengerRepository;
 import stu.cn.ua.persistence.TicketRepository;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
@@ -22,7 +23,21 @@ public class PassengerService {
         return passengerRepository.findPassengerByPassengerId(id);
     }
     public Passenger save(Passenger passenger){
-        return passengerRepository.save(passenger);
+        Passenger passenger1=new Passenger();
+        Long id= passenger.getPassengerId();
+        String firstname =passenger.getFirstName();
+        String lastname =passenger.getLastName();
+        String privileges= passenger.getPrivileges();
+        String number= passenger.getPhone();
+        Set<Ticket>tickets =passenger.getTickets();
+
+        passenger1.setPassengerId(id);
+        passenger1.setFirstName(firstname);
+        passenger1.setLastName(lastname);
+        passenger1.setTickets(tickets);
+        passenger1.setPhone(number);
+        passenger1.setPrivileges(privileges);
+        return passengerRepository.save(passenger1);
     }
 
     @Transactional
@@ -30,7 +45,7 @@ public class PassengerService {
     Passenger passenger = passengerRepository.findPassengerByPassengerId(id);
 
     Set<Ticket> tickets = passenger.getTickets();
-if(tickets != null) {
+    if(tickets != null) {
     for (Ticket ticket : tickets) {
         ticketRepository.deleteByTicketId(ticket.getTicketId());
     }

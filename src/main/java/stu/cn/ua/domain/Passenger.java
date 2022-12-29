@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,15 +12,19 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @Entity
+
 @Table(name = "passenger")
 public class Passenger {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "passenger_id")
   private Long passengerId;
 
   private String privileges;
+  @Column(name = "first_name")
   private String firstName;
+  @Column(name = "last_name")
   private String lastName;
   private String phone;
 
