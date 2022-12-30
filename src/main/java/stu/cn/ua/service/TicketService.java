@@ -31,33 +31,41 @@ private final FlightRepository flightRepository;
         return this.ticketRepository.findTicketByTicketId(id);
     }
 
-    public Ticket save(Ticket ticket){
-    Long idPassenger = ticket.getPassenger().getPassengerId();
-    Long idFlight = ticket.getFlight().getFlightId();
-    //перевірити умову
-    if(idPassenger != null && idFlight != null){
-        Passenger passenger = passengerRepository.findPassengerByPassengerId(idPassenger);
-        Flight flight = flightRepository.findFlightByFlightId(idFlight);
+    public Ticket save(Ticket ticket,Long flightId,Long passengerId){
 
-        if(passenger != null && flight != null){
+    if(flightId!=null)
+    {
+        Flight flight= flightRepository.findFlightByFlightId(flightId);
+
+        if (flight!=null)
+        {
             Transport[] arr = (Transport[]) flight.getTransports().toArray();
             Integer numberOfSeats = Arrays.stream(arr).findFirst().get().getNumberOfSeats();
-            if(flight.getNumberOfPassengers() < numberOfSeats) {
-                passenger.getTickets().add(ticket);
-                passengerRepository.save(passenger);
+            if(flight.getNumberOfPassengers() < numberOfSeats)
+            {
                 flight.getTickets().add(ticket);
-                flightRepository.save(flight);
-            }
-
-        }else{
-            return null;
+            flightRepository.save(flight);
         }
-
-    }else{
-    //можливо треба викидатипомилку
-    return  null;
+            else
+                return null;
+        }
     }
-    return ticketRepository.save(ticket);
+    else
+        return null;
+    if(passengerId!=null)
+    {
+        Passenger passenger= passengerRepository.findPassengerByPassengerId(passengerId);
+        if (passenger!=null)
+        {
+            passenger.getTickets().add(ticket);
+            passengerRepository.save(passenger);
+        }
+        else
+            return null;
+    }
+    else
+        return null;
+        return ticketRepository.save(ticket);
     }
 
     @Transactional
@@ -72,7 +80,6 @@ private final FlightRepository flightRepository;
         ticketRepository.deleteByTicketId(id);
 
     }
-//переговорити умови редагування( типу чи можна редагувати поле рейс)
     public Ticket update(Ticket ticket){
 
         return ticketRepository.save(ticket);
