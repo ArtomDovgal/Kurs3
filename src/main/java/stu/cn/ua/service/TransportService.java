@@ -18,7 +18,7 @@ public class TransportService {
         this.transportRepository = transportRepository;
     }
 
-    private Transport save(Transport transport)
+    public Transport save(Transport transport)
     {
      Long transportCategoryId= transport.getTransportCategory().getTransportCategoryId();
 
@@ -39,11 +39,11 @@ public class TransportService {
         return transportRepository.save(transport);
     }
 
-    private Transport findTransportById(Long id)
+    public Transport findTransportById(Long id)
     {
         return transportRepository.findTransportByTransportId(id);
     }
-    private void deleteTransportById(Long id)
+    public void deleteTransportById(Long id)
     {
         Transport transportToDelete=transportRepository.findTransportByTransportId(id);
         if(transportToDelete!=null)
@@ -55,7 +55,7 @@ public class TransportService {
         }
 
     }
-    private Set<Transport> findAll()
+    public Set<Transport> findAll()
     {
         return transportRepository.findAll();
     }
