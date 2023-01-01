@@ -16,7 +16,7 @@ import java.util.Date;
 public class Ticket {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long ticketId;
 
   @Enumerated(EnumType.STRING)
@@ -24,12 +24,13 @@ public class Ticket {
 
   @Column(name = "date_of_departure_on_the_ticket")
   private Date dateOfDepartueOnTheTicket;
+
   @Column(name = "date_and_time_of_ticket_sale")
-
   private Date dateAndTimeOfTiketSale;
-  @Column(name = "date_and_time_of_ticket_booking")
 
+  @Column(name = "date_and_time_of_ticket_booking")
   private Date dateAndTimeOfTicketBooking;
+  @Column(name="price")
   private long price;
 
   @ManyToOne
@@ -38,7 +39,6 @@ public class Ticket {
 
   @ManyToOne
   @JoinColumn(name = "passengerId")
-
   private Passenger passenger;
 
   public Ticket() {

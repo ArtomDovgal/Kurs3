@@ -5,9 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import stu.cn.ua.domain.Flight;
-import stu.cn.ua.domain.Passenger;
 import stu.cn.ua.service.FlightService;
-import stu.cn.ua.service.PassengerService;
 
 @Controller
 public class FlightController {
@@ -37,6 +35,7 @@ public class FlightController {
     @PostMapping
     @RequestMapping("/flight/")
     public String saveOrUpdate(@ModelAttribute Flight flight){
+        flight.setFlightId(5L);
         Flight flight1=flightService.save(flight);
         return "redirect:/flight/"+flight1.getFlightId();
     }

@@ -1,6 +1,5 @@
 package stu.cn.ua.domain;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -4,13 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import stu.cn.ua.domain.Passenger;
-import stu.cn.ua.domain.TicketCategory;
 import stu.cn.ua.domain.TransportCategory;
 import stu.cn.ua.service.TransportCategoryService;
 
 @Controller
 public class TransportCategoryController {
+
     @Autowired
     private final TransportCategoryService transportCategoryService;
 
@@ -18,9 +17,7 @@ public class TransportCategoryController {
         this.transportCategoryService = transportCategoryService;
     }
 
-
     @GetMapping("/transportcategories")
-
     public String getTransportCategories(Model model){
         model.addAttribute("transportCategories",transportCategoryService.findAll());
         return "/transportcategory/transportcategory";
@@ -50,6 +47,7 @@ public class TransportCategoryController {
         model.addAttribute("transportcategory",transportCategoryService.findTransportCategoryById(Long.parseLong(id)));
         return "/transportcategory/addUpdateTransportCategory";
     }
+
     @GetMapping("/transportcategory/transportcategory/delete/{id}")
     public String deletePassengerById(Model model, @PathVariable String id){
         transportCategoryService.deleteTransportCategoryById(Long.parseLong(id));

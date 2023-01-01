@@ -34,7 +34,7 @@ public class TransportController {
     @RequestMapping("/transport/transport/new")
     public String newTransport(Model model){
         model.addAttribute("transport", new Transport());
-        return "/transport/addUpdateTransport";
+        return "transport/addUpdateTransport";
     }
     @PostMapping
     @RequestMapping("/transport/addUpdateTransport/")
