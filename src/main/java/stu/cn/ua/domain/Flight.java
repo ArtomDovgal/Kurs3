@@ -48,5 +48,6 @@ public class Flight {
   private Set<Transport> transports=new HashSet<>();
 
   public Flight() {
+
   }
 }

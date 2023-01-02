@@ -32,7 +32,7 @@ public class PassengerController {
         return "/passenger/addUpdatePassenger";
     }
     @PostMapping
-    @RequestMapping("/passenger/passenger/")
+    @RequestMapping("/passenger/")
     public String saveOrUpdate(@ModelAttribute Passenger passenger){
         Passenger passenger1=passengerService.save(passenger);
         return "redirect:/passenger/passengerShow/"+passenger1.getPassengerId();

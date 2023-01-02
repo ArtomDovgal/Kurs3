@@ -35,7 +35,7 @@ public class TransportCategoryController {
         return "/transportcategory/addUpdateTransportCategory";
     }
     @PostMapping
-    @RequestMapping("/transportcategory/addUpdateTransportCategory/")
+    @RequestMapping("/transportcategory/")
     public String saveOrUpdate(@ModelAttribute TransportCategory transportCategory){
         TransportCategory transportCategory1 =transportCategoryService.save(transportCategory);
         return "redirect:/transportcategory/transportcategory/"+transportCategory1.getTransportCategoryId();

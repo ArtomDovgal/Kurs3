@@ -45,7 +45,7 @@ public class TicketController {
         return "/ticket/addUpdateTicket";
     }
     @PostMapping
-    @RequestMapping("/ticket/ticket/")
+    @RequestMapping("/ticket/")
     public String saveOrUpdate(@ModelAttribute Ticket ticket){
         Long flightId=ticket.getFlight().getFlightId();
         Long passengerId=ticket.getPassenger().getPassengerId();

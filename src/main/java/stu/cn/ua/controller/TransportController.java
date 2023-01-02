@@ -52,6 +52,6 @@ public class TransportController {
     @GetMapping("/transport/transport/delete/{id}")
     public String deletePassengerById(Model model, @PathVariable String id){
         transportService.deleteTransportById(Long.parseLong(id));
-        return "redirect:/transport/transports";
+        return "redirect:/transports";
     }
 }

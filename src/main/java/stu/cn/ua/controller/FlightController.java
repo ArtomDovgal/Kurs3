@@ -42,12 +42,12 @@ public class FlightController {
     @PostMapping
     @RequestMapping("/flight/{id}/update")
     public String updateFlight(@PathVariable String id, Model model){
-        model.addAttribute("passenger",flightService.findFlightById(Long.parseLong(id)));
+        model.addAttribute("flight",flightService.findFlightById(Long.parseLong(id)));
         return "flight/AddUpdateFlight";
     }
     @GetMapping("/flight/delete/{id}")
     public String deleteFlightById(Model model, @PathVariable String id){
         flightService.deleteById(Long.parseLong(id));
-        return "redirect:flight/flights";
+        return "redirect:/flights";
     }
 }

@@ -25,7 +25,7 @@ public class Ticket {
   @Column(name = "date_of_departure_on_the_ticket")
   private Date dateOfDepartueOnTheTicket;
 
-  @Column(name = "date_and_time_of_ticket_sale")
+  @Column(name = "date_and_time_of_tiket_sale")
   private Date dateAndTimeOfTiketSale;
 
   @Column(name = "date_and_time_of_ticket_booking")
