@@ -16,7 +16,7 @@ public class FlightController {
     public FlightController(FlightService flightService){
         this.flightService = flightService;
     }
-    @GetMapping("flight/all")
+    @GetMapping("/flights")
     public String getFlights(Model model){
         model.addAttribute("flights", flightService.getAll());
         return "flight/flights";

@@ -58,7 +58,7 @@
         <td scope="col" th:text="${transportcategory.getVehicleType()}"></td>
 
         <td>
-            <select th:field="${transportcategory.getTransports().getTransportId()}"  id="dropOperator">
+            <select id="dropOperator">
                 <option value="0">select operator</option>
                 <option th:each="transport : ${transportcategory.getTransports()}" th:value="${transport.getTransportId()}" th:text="${transport.getTransportId()}"></option>
             </select>

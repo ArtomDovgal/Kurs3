@@ -34,14 +34,14 @@ public class Flight {
 
   @OneToMany(mappedBy = "flight")
   private Set<Ticket> tickets = new HashSet<>();
-  @Column(name="number_of_passangers")
+  @Column(name="number_of_passengers")
   private long numberOfPassengers;
 
-  @ManyToMany(fetch = FetchType.LAZY)
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name="flight_transport",
           joinColumns = {
-          @JoinColumn(name = "flight_id",referencedColumnName = "flight_id")
-  },
+                  @JoinColumn(name = "flight_id",referencedColumnName = "flight_id")
+          },
           inverseJoinColumns = {
                   @JoinColumn(name="transport_id",referencedColumnName = "transport_id")
           })

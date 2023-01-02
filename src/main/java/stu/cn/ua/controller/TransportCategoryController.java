@@ -19,8 +19,8 @@ public class TransportCategoryController {
 
     @GetMapping("/transportcategories")
     public String getTransportCategories(Model model){
-        model.addAttribute("transportCategories",transportCategoryService.findAll());
-        return "/transportcategory/transportcategory";
+        model.addAttribute("transportcategories",transportCategoryService.findAll());
+        return "/transportcategory/transportcategories";
     }
 
     @RequestMapping("/transportcategory/transportcategory/{id}")
