@@ -1,72 +1,65 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link href = "style.css" rel="stylesheet" type="text/css"/>
+  <meta charset="UTF-8"/>
+  <title>Show Recipe</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+        th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+  <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+          integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+          crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
+<!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
+<div class="container-fluid" style="margin-top: 20px">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="pannel-group">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h1 class="panel-title" th:text="${ticket.getTicketId()}">Recipe Description Here!</h1>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-3">
+                <h5>Booking:</h5>
+              </div>
+              <div class="col-md-3">
+                <p th:text="${ticket.getDateAndTimeOfTicketBooking()}">30 min</p>
+              </div>
+              <div class="col-md-3">
+                <h5>Sale:</h5>
+              </div>
+              <div class="col-md-3">
+                <p th:text="${ticket.getDateAndTimeOfTiketSale()}">Easy</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <h5>Departure:</h5>
+              </div>
+              <div class="col-md-3">
+                <p th:text="${ticket.getDateOfDepartueOnTheTicket()}">30 min</p>
+              </div>
+              <div class="col-md-3">
+                <h5>Price:</h5>
+              </div>
+              <div class="col-md-3">
+                <p th:text="${ticket.getPrice()}">30 min</p>
+              </div>
+  </div>
+          </div>
+        </div>
+      </div>
     </div>
-</nav>
-<h1>Passengers</h1>
-
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Id</th>
-        <th scope="col">FirstName</th>
-        <th scope="col">LastName</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Privilege</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr scope="row" th:each="passenger : ${passengers}">
-        <td scope="col" th:text="${passenger.getPassengerId()}"></td>
-        <td scope="col" th:text="${passenger.getFirstName()}"></td>
-        <td scope="col" th:text="${passenger.getLastName()}"></td>
-        <td scope="col" th:text="${passenger.getPhone()}"></td>
-        <td scope="col" th:text="${passenger.getPrivileges()}"></td>
-        <td scope="col" ><a href="#" th:href="@{'/passenger/delete/' + ${passenger.getPassengerId()}}">Delete</a></td>
-    </tr>
-    <tr scope="row">
-        <td scope="col" ></td>
-        <td scope="col" ><input type="text"></td>
-        <td scope="col" ><input type="text"></td>
-        <td scope="col" ><input type="text"></td>
-        <td scope="col" ><input type="text"></td>
-        <td scope="col" ><input type="button" value="&nbsp&nbsp Save  &nbsp"></td>
-    </tr>
-    </tbody>
-</table>
+  </div>
+</div>
 </body>
 </html>

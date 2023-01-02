@@ -11,6 +11,8 @@ import stu.cn.ua.persistence.PassengerRepository;
 import stu.cn.ua.persistence.TicketRepository;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Optional;
 import java.util.Set;
 
 
@@ -39,15 +41,27 @@ private final FlightRepository flightRepository;
 
         if (flight!=null)
         {
-            Transport[] arr = (Transport[]) flight.getTransports().toArray();
-            Integer numberOfSeats = Arrays.stream(arr).findFirst().get().getNumberOfSeats();
-            if(flight.getNumberOfPassengers() < numberOfSeats)
-            {
-                flight.getTickets().add(ticket);
+           // Transport[] arr = (Transport[]) flight.getTransports().toArray();
+          //  Optional<Transport> first = flight.getTransports().stream().findFirst();
+           // Integer numberOfSeats = Arrays.stream(arr).findFirst().get().getNumberOfSeats();
+           // Transport transport= first.get();
+
+
+//            Iterator iter = flight.getTransports().iterator();
+//            Transport transport1 = (Transport) iter.next();
+//            Integer numberOfSeats = transport1.getNumberOfSeats();
+//
+//            if(flight.getNumberOfPassengers() < numberOfSeats)
+//            {
+//                flight.getTickets().add(ticket);
+//            flightRepository.save(flight);
+//            ticket.setFlight(flight);
+//        }
+//            else
+//                return null;
+            flight.getTickets().add(ticket);
             flightRepository.save(flight);
-        }
-            else
-                return null;
+            ticket.setFlight(flight);
         }
     }
     else
@@ -59,12 +73,14 @@ private final FlightRepository flightRepository;
         {
             passenger.getTickets().add(ticket);
             passengerRepository.save(passenger);
+            ticket.setPassenger(passenger);
         }
         else
             return null;
     }
     else
         return null;
+
         return ticketRepository.save(ticket);
     }
 

@@ -7,8 +7,7 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
+
 @AllArgsConstructor
 @Entity
 
@@ -32,5 +31,53 @@ public class Passenger {
 
   public Passenger() {
 
+  }
+
+  public Long getPassengerId() {
+    return passengerId;
+  }
+
+  public void setPassengerId(Long passengerId) {
+    this.passengerId = passengerId;
+  }
+
+  public String getPrivileges() {
+    return privileges;
+  }
+
+  public void setPrivileges(String privileges) {
+    this.privileges = privileges;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  public Set<Ticket> getTickets() {
+    return tickets;
+  }
+
+  public void setTickets(Set<Ticket> tickets) {
+    this.tickets = tickets;
   }
 }

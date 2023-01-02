@@ -31,30 +31,60 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-3 form-group">
-                                    <label>firstName:</label>
+                                    <label>Booking:</label>
                                     <input type="datetime-local" class="form-control" th:field="*{dateAndTimeOfTicketBooking}"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
-                                    <label>lastName:</label>
+                                    <label>Sale:</label>
                                     <input type="datetime-local" class="form-control" th:field="*{dateAndTimeOfTiketSale}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
-                                    <label>phone:</label>
+                                    <label>Departue:</label>
                                     <input type="datetime-local" class="form-control" th:field="*{dateOfDepartueOnTheTicket}"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
-                                    <label>privileges:</label>
+                                    <label>price:</label>
                                     <input type="number" class="form-control" th:field="*{price}"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
-                                    <label>privileges:</label>
-                                    <input type="text" class="form-control" th:field="*{ticketCategory}"/>
+                                    <label>Category:</label>
+                                    <select class="form-control" name="select"  th:field="*{ticketCategory}"> <!--Supplement an id here instead of using 'name'-->
+                                        <option value="USUAL">USUAL</option>
+                                        <option value="LUXURY">LUXURY</option>
+                                        <option value="BUSINESS">BUSINESS</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 form-group">
+                                    <label>id Passenger:</label>
+<!--                                    <input class="form-control" th:value="*{getPassenger().passengerId}"/>-->
+
+                                    <select class="form-control" name="select"  th:field="*{passenger_id}">
+                                        <option th:each="passenger1 : ${passengers}"
+                                                th:value="${passenger1.passengerId}"
+                                                th:text="${passenger1.passengerId.toString()}">
+
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 form-group">
+                                    <label>flight:</label>
+<!--                                    <input class="form-control" th:value="*{getFlight().flightId}"/>-->
+
+                                    <select class="form-control" name="select" th:field="*{flight_id}">
+                                        <option th:each="flight1 : ${flights}"
+                                                th:value="${flight1.flightId}"
+                                                th:text="${flight1.getFlightId()} + ' ' + ${flight1.getDeparturePoint()} + ' - ' + ${flight1.getArrivalPoint()} "></option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

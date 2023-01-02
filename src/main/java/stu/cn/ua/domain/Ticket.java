@@ -1,18 +1,15 @@
 package stu.cn.ua.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import stu.cn.ua.mapper.TicketMapper;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
-@Getter
-@Setter
-@AllArgsConstructor
+
+
 @Entity
 @Table(name = "ticket")
-
 public class Ticket {
 
   @Id
@@ -23,13 +20,13 @@ public class Ticket {
   private TicketCategory ticketCategory;
 
   @Column(name = "date_of_departure_on_the_ticket")
-  private Date dateOfDepartueOnTheTicket;
+  private LocalDateTime dateOfDepartueOnTheTicket;
 
   @Column(name = "date_and_time_of_tiket_sale")
-  private Date dateAndTimeOfTiketSale;
+  private LocalDateTime dateAndTimeOfTiketSale;
 
   @Column(name = "date_and_time_of_ticket_booking")
-  private Date dateAndTimeOfTicketBooking;
+  private LocalDateTime dateAndTimeOfTicketBooking;
   @Column(name="price")
   private long price;
 
@@ -37,11 +34,83 @@ public class Ticket {
   @JoinColumn(name = "flightId")
   private Flight flight;
 
-  @ManyToOne
-  @JoinColumn(name = "passengerId")
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "passengeId")
   private Passenger passenger;
 
   public Ticket() {
 
+  }
+  public Ticket(TicketMapper ticketMapper){
+    this.ticketId = ticketMapper.getTicketId();
+    this.ticketCategory = ticketMapper.getTicketCategory();
+    this.dateAndTimeOfTicketBooking = ticketMapper.getDateAndTimeOfTicketBooking();
+    this.dateAndTimeOfTiketSale = ticketMapper.getDateAndTimeOfTiketSale();
+    this.dateOfDepartueOnTheTicket = ticketMapper.getDateOfDepartueOnTheTicket();
+    this.price = ticketMapper.getPrice();
+  }
+
+  public Long getTicketId() {
+    return ticketId;
+  }
+
+  public void setTicketId(Long ticketId) {
+    this.ticketId = ticketId;
+  }
+
+  public TicketCategory getTicketCategory() {
+    return ticketCategory;
+  }
+
+  public void setTicketCategory(TicketCategory ticketCategory) {
+    this.ticketCategory = ticketCategory;
+  }
+
+  public LocalDateTime getDateOfDepartueOnTheTicket() {
+    return dateOfDepartueOnTheTicket;
+  }
+
+  public void setDateOfDepartueOnTheTicket(LocalDateTime dateOfDepartueOnTheTicket) {
+    this.dateOfDepartueOnTheTicket = dateOfDepartueOnTheTicket;
+  }
+
+  public LocalDateTime getDateAndTimeOfTiketSale() {
+    return dateAndTimeOfTiketSale;
+  }
+
+  public void setDateAndTimeOfTiketSale(LocalDateTime dateAndTimeOfTiketSale) {
+    this.dateAndTimeOfTiketSale = dateAndTimeOfTiketSale;
+  }
+
+  public LocalDateTime getDateAndTimeOfTicketBooking() {
+    return dateAndTimeOfTicketBooking;
+  }
+
+  public void setDateAndTimeOfTicketBooking(LocalDateTime dateAndTimeOfTicketBooking) {
+    this.dateAndTimeOfTicketBooking = dateAndTimeOfTicketBooking;
+  }
+
+  public long getPrice() {
+    return price;
+  }
+
+  public void setPrice(long price) {
+    this.price = price;
+  }
+
+  public Flight getFlight() {
+    return flight;
+  }
+
+  public void setFlight(Flight flight) {
+    this.flight = flight;
+  }
+
+  public Passenger getPassenger() {
+    return passenger;
+  }
+
+  public void setPassenger(Passenger passenger) {
+    this.passenger = passenger;
   }
 }

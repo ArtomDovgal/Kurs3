@@ -8,8 +8,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
+
 @AllArgsConstructor
 @Entity
 @Table(name = "flight")
@@ -49,5 +48,69 @@ public class Flight {
 
   public Flight() {
 
+  }
+
+  public Long getFlightId() {
+    return flightId;
+  }
+
+  public void setFlightId(Long flightId) {
+    this.flightId = flightId;
+  }
+
+  public String getDeparturePoint() {
+    return departurePoint;
+  }
+
+  public void setDeparturePoint(String departurePoint) {
+    this.departurePoint = departurePoint;
+  }
+
+  public String getArrivalPoint() {
+    return arrivalPoint;
+  }
+
+  public void setArrivalPoint(String arrivalPoint) {
+    this.arrivalPoint = arrivalPoint;
+  }
+
+  public LocalDateTime getDepartureTime() {
+    return departureTime;
+  }
+
+  public void setDepartureTime(LocalDateTime departureTime) {
+    this.departureTime = departureTime;
+  }
+
+  public LocalDateTime getArrivalTime() {
+    return arrivalTime;
+  }
+
+  public void setArrivalTime(LocalDateTime arrivalTime) {
+    this.arrivalTime = arrivalTime;
+  }
+
+  public Set<Ticket> getTickets() {
+    return tickets;
+  }
+
+  public void setTickets(Set<Ticket> tickets) {
+    this.tickets = tickets;
+  }
+
+  public long getNumberOfPassengers() {
+    return numberOfPassengers;
+  }
+
+  public void setNumberOfPassengers(long numberOfPassengers) {
+    this.numberOfPassengers = numberOfPassengers;
+  }
+
+  public Set<Transport> getTransports() {
+    return transports;
+  }
+
+  public void setTransports(Set<Transport> transports) {
+    this.transports = transports;
   }
 }
