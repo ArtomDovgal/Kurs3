@@ -19,7 +19,7 @@ public class TicketController {
 
     @GetMapping("/tickets")
     public String getTickets(Model model){
-        model.addAttribute("ticket",ticketService.findAll());
+        model.addAttribute("tickets",ticketService.findAll());
         return "/ticket/tickets";
     }
 
@@ -69,6 +69,6 @@ public class TicketController {
     @GetMapping("ticket/delete/{id}")
     public String deleteTicketById(Model model, @PathVariable String id){
         ticketService.deleteByTicketId(Long.parseLong(id));
-        return "redirect:/ticket/tickets";
+        return "redirect:/tickets";
     }
 }
