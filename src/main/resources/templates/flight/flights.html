@@ -46,7 +46,11 @@
         <td scope="col" th:text="${flight.getArrivalTime()}"></td>
         <td scope="col" th:text="${flight.getNumberOfPassengers()}"></td>
         <td>
-            <select name="Tickets" id="dropOperator">
+            <select name="Transports" id="dropOperator">
+<!--                        ^
+                            |
+                        можливо тікетс-->
+
                 <option th:each="transport : ${flight.getTransports()}"
                         th:value="${transport.getTransportId()}"
                         th:text="${transport.getTransportId()} + ' ' + ${transport.getTransportCategory().model} "></option>

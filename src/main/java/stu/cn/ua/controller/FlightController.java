@@ -16,12 +16,14 @@ public class FlightController {
     public FlightController(FlightService flightService){
         this.flightService = flightService;
     }
-    @GetMapping("/flights")
+
+    @GetMapping("flights")
     public String getFlights(Model model){
         model.addAttribute("flights", flightService.getAll());
         return "flight/flights";
     }
-    @RequestMapping("/flight/{id}")
+
+    @RequestMapping("flight/{id}")
     public String showFlightById(@PathVariable String id, Model model)
     {
         model.addAttribute("flight", flightService.findFlightById(Long.parseLong(id)));
@@ -32,20 +34,21 @@ public class FlightController {
         model.addAttribute("flight", new Flight());
         return "flight/AddUpdateFlight";
     }
+
     @PostMapping
-    @RequestMapping("/flight/")
+    @RequestMapping("flight/")
     public String saveOrUpdate(@ModelAttribute Flight flight){
-        flight.setFlightId(5L);
         Flight flight1=flightService.save(flight);
-        return "redirect:/flight/"+flight1.getFlightId();
+        return "redirect:"+flight1.getFlightId();
     }
+
     @PostMapping
-    @RequestMapping("/flight/{id}/update")
+    @RequestMapping("flight/{id}/update")
     public String updateFlight(@PathVariable String id, Model model){
         model.addAttribute("flight",flightService.findFlightById(Long.parseLong(id)));
         return "flight/AddUpdateFlight";
     }
-    @GetMapping("/flight/delete/{id}")
+    @GetMapping("flight/delete/{id}")
     public String deleteFlightById(Model model, @PathVariable String id){
         flightService.deleteById(Long.parseLong(id));
         return "redirect:/flights";

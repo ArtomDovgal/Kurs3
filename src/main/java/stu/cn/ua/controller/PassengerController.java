@@ -12,40 +12,42 @@ public class PassengerController {
 
     @Autowired
     private PassengerService passengerService;
-    @GetMapping("/passenger/passenger")
-    public String getPassengers(Model model){
-        model.addAttribute("passengers",passengerService.findAll());
-        return "/passenger/passenger";
-    }
+
     public PassengerController(PassengerService passengerService) {
         this.passengerService = passengerService;
     }
-    @RequestMapping("/passenger/passengerShow/{id}")
+
+    @GetMapping("passengers")
+    public String getPassengers(Model model){
+        model.addAttribute("passengers",passengerService.findAll());
+        return "passenger/passengers";
+    }
+    @RequestMapping("passenger/{id}")
     public String showPassengerById(@PathVariable String id, Model model)
     {
         model.addAttribute("passenger",passengerService.findPassengerById(Long.parseLong(id)));
-        return "/passenger/passengerShow";
+        return "passenger/passenger";
     }
-    @RequestMapping("/passenger/passenger/new")
+    @RequestMapping("passenger/new")
     public String newPassenger(Model model){
         model.addAttribute("passenger", new Passenger());
-        return "/passenger/addUpdatePassenger";
+        return "passenger/addUpdatePassenger";
     }
     @PostMapping
-    @RequestMapping("/passenger/")
+    @RequestMapping("passenger/")
     public String saveOrUpdate(@ModelAttribute Passenger passenger){
         Passenger passenger1=passengerService.save(passenger);
-        return "redirect:/passenger/passengerShow/"+passenger1.getPassengerId();
+        return "redirect:"+passenger1.getPassengerId();
     }
     @PostMapping
-    @RequestMapping("/passenger/passenger/{id}/update")
+    @RequestMapping("passenger/{id}/update")
     public String updatePassenger(@PathVariable String id, Model model){
         model.addAttribute("passenger",passengerService.findPassengerById(Long.parseLong(id)));
         return "/passenger/addUpdatePassenger";
     }
-    @GetMapping("/passenger/passenger/delete/{id}")
+    @GetMapping("passenger/delete/{id}")
     public String deletePassengerById(Model model, @PathVariable String id){
         passengerService.deleteByPassengerId(Long.parseLong(id));
-        return "redirect:/passenger/passenger";
+        return "redirect:/passengers";
     }
 }

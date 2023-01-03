@@ -55,7 +55,7 @@ public class TicketController {
         Long passengerId = passengerService.findPassengerById(ticketMapper.getPassenger_id()).getPassengerId();
         Long flightId= flightService.findFlightById(ticketMapper.getFlight_id()).getFlightId();
         Ticket ticket1=ticketService.save(ticket,flightId,passengerId);
-        return "redirect:/ticket/ticket/"+ticket1.getTicketId();
+        return "redirect:"+ticket1.getTicketId();
     }
     @PostMapping
     @RequestMapping("ticket/{id}/update")

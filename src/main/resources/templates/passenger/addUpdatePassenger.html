@@ -45,12 +45,21 @@
                                     <input type="text" class="form-control" th:field="*{phone}"/>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>privileges:</label>
-                                    <input type="text" class="form-control" th:field="*{privileges}"/>
+<!--                                    <input type="text" class="form-control" th:field="*{privileges}"/>-->
+                                    <select name="privileges" id="dropOperator">
+                                        <option  th:value="Student" th:text="Student" th:field="*{privileges}"></option>
+                                        <option  th:value="Pencioner" th:text="Pencioner" th:field="*{privileges}"></option>
+                                        <option  th:value="Disabled" th:text="Disabled" th:field="*{privileges}"></option>
+                                        <option  th:value="Nothing" th:text="Nothing" th:field="*{privileges}"></option>
+
+                                    </select>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     </div>

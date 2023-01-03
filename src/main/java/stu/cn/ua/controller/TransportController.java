@@ -5,8 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import stu.cn.ua.domain.Transport;
-import stu.cn.ua.domain.TransportCategory;
-import stu.cn.ua.service.TransportCategoryService;
 import stu.cn.ua.service.TransportService;
 
 @Controller
@@ -25,31 +23,31 @@ public class TransportController {
         return "/transport/transports";
     }
 
-    @RequestMapping("/transport/transport/{id}")
+    @RequestMapping("transport/{id}")
     public String showTransportById(@PathVariable String id, Model model)
     {
         model.addAttribute("transport",transportService.findTransportById(Long.parseLong(id)));
-        return "/transportcategory/transportcategory";
+        return "transport/transport";
     }
-    @RequestMapping("/transport/transport/new")
+    @RequestMapping("transport/new")
     public String newTransport(Model model){
         model.addAttribute("transport", new Transport());
         return "transport/addUpdateTransport";
     }
     @PostMapping
-    @RequestMapping("/transport/addUpdateTransport/")
+    @RequestMapping("transport/")
     public String saveOrUpdate(@ModelAttribute Transport transport){
         Transport transport1 =transportService.save(transport);
-        return "redirect:/transport/transport/"+transport1.getTransportId();
+        return "redirect:"+transport1.getTransportId();
     }
 
     @PostMapping
-    @RequestMapping("/transport/transport/{id}/update")
+    @RequestMapping("transport/{id}/update")
     public String updatePassenger(@PathVariable String id, Model model){
         model.addAttribute("transport",transportService.findTransportById(Long.parseLong(id)));
         return "/transport/addUpdateTransport";
     }
-    @GetMapping("/transport/transport/delete/{id}")
+    @GetMapping("transport/delete/{id}")
     public String deletePassengerById(Model model, @PathVariable String id){
         transportService.deleteTransportById(Long.parseLong(id));
         return "redirect:/transports";

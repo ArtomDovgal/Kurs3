@@ -47,7 +47,7 @@
         <td scope="col" th:text="${ticket.passenger.getPassengerId()} +' '
                                 +${ticket.passenger.getFirstName()} +' '
                                 +${ticket.passenger.getLastName()}"></td>
-          <td scope="col" th:text="${ticket.getFlight().flightId}"></td>
+        <td scope="col" th:text="${ticket.getFlight().flightId}"></td>
 
         <td scope="col" ><a href="#" th:href="@{'/ticket/delete/' + ${ticket.getTicketId()}}">Delete</a></td>
     </tr>

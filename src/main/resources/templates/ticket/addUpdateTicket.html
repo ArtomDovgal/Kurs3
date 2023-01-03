@@ -64,13 +64,11 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>id Passenger:</label>
-<!--                                    <input class="form-control" th:value="*{getPassenger().passengerId}"/>-->
-
+                                    <!--<input class="form-control" th:value="*{getPassenger().passengerId}"/>-->
                                     <select class="form-control" name="select"  th:field="*{passenger_id}">
                                         <option th:each="passenger1 : ${passengers}"
                                                 th:value="${passenger1.passengerId}"
                                                 th:text="${passenger1.passengerId.toString()}">
-
                                         </option>
                                     </select>
                                 </div>
@@ -78,8 +76,7 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>flight:</label>
-<!--                                    <input class="form-control" th:value="*{getFlight().flightId}"/>-->
-
+                                    <!--<input class="form-control" th:value="*{getFlight().flightId}"/>-->
                                     <select class="form-control" name="select" th:field="*{flight_id}">
                                         <option th:each="flight1 : ${flights}"
                                                 th:value="${flight1.flightId}"
@@ -89,8 +86,8 @@
                             </div>
                         </div>
                     </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>

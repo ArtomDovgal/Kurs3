@@ -37,29 +37,26 @@
         </ul>
     </div>
 </nav>
-<h1>Transports</h1>
+<h1>Passengers</h1>
 
 <table class="table">
     <thead>
     <tr>
         <th scope="col">Id</th>
-        <th scope="col">Number Of Seats</th>
-        <th scope="col">NumberOfSeats</th>
-        <th scope="col">Category</th>
-        <th scope="col">Number Of Workers</th>
-
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Privilege</th>
     </tr>
     </thead>
     <tbody>
-    <tr scope="row" th:each="transport : ${transports}">
-        <td scope="col" th:text="${transport.getTransportId()}"></td>
-        <td scope="col" th:text="${transport.getNumberOfSeats()}"></td>
-        <td scope="col" th:text="${transport.getNumberOfSeats()}"></td>
-        <td scope="col" th:text="${transport.getTransportCategory().getTransportCategoryId()}"></td>
-        <td scope="col" th:text="${transport.getNumberOfWorkers()}"></td>
-
-        <td scope="col" ><a href="#" th:href="@{'/transport/delete/'
-        + ${transport.getTransportId()}}">Delete</a></td>
+    <tr scope="row" th:each="passenger : ${passengers}">
+        <td scope="col" th:text="${passenger.getPassengerId()}"></td>
+        <td scope="col" th:text="${passenger.getFirstName()}"></td>
+        <td scope="col" th:text="${passenger.getLastName()}"></td>
+        <td scope="col" th:text="${passenger.getPhone()}"></td>
+        <td scope="col" th:text="${passenger.getPrivileges()}"></td>
+        <td scope="col" ><a href="#" th:href="@{'/passenger/delete/' + ${passenger.getPassengerId()}}">Delete</a></td>
     </tr>
     <tr scope="row">
         <td scope="col" ></td>

@@ -22,7 +22,7 @@ public class Ticket {
   @Column(name = "date_of_departure_on_the_ticket")
   private LocalDateTime dateOfDepartueOnTheTicket;
 
-  @Column(name = "date_and_time_of_tiket_sale")
+  @Column(name = "date_and_time_of_ticket_sale")
   private LocalDateTime dateAndTimeOfTiketSale;
 
   @Column(name = "date_and_time_of_ticket_booking")
@@ -35,7 +35,7 @@ public class Ticket {
   private Flight flight;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "passengeId")
+  @JoinColumn(name = "passenge_id")
   private Passenger passenger;
 
   public Ticket() {
