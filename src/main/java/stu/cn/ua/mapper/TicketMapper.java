@@ -1,8 +1,6 @@
 package stu.cn.ua.mapper;
 
 import jakarta.persistence.*;
-import stu.cn.ua.domain.Flight;
-import stu.cn.ua.domain.Passenger;
 import stu.cn.ua.domain.Ticket;
 import stu.cn.ua.domain.TicketCategory;
 
@@ -97,6 +95,6 @@ public class TicketMapper {
         this.ticketCategory = ticket.getTicketCategory();
         this.dateAndTimeOfTicketBooking = ticket.getDateAndTimeOfTicketBooking();
         this.dateAndTimeOfTiketSale = ticket.getDateAndTimeOfTiketSale();
-        this.dateOfDepartueOnTheTicket = ticket.getDateOfDepartueOnTheTicket();
+        this.dateOfDepartueOnTheTicket = ticket.getDateOfDepartureOnTheTicket();
     }
 }

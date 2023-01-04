@@ -1,6 +1,7 @@
 package stu.cn.ua.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import stu.cn.ua.domain.Flight;
 import stu.cn.ua.domain.Ticket;
 import stu.cn.ua.domain.Transport;
@@ -92,5 +93,11 @@ public class FlightService {
     }
     public Set<Flight> getAll () {
         return flightRepository.findAll();
+    }
+
+    //можна додати еррор
+    @Transactional
+    public void delayFlight(Integer days){
+        if(days > 0) flightRepository.delayFlights(days);
     }
 }

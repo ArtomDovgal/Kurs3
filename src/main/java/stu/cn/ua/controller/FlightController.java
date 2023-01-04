@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import stu.cn.ua.domain.Flight;
+import stu.cn.ua.persistence.FlightRepository;
 import stu.cn.ua.service.FlightService;
 import stu.cn.ua.service.TransportService;
 
@@ -16,10 +17,13 @@ public class FlightController {
 
     @Autowired
     private final TransportService transportService;
+    private final FlightRepository flightRepository;
 
-    public FlightController(FlightService flightService, TransportService transportService){
+    public FlightController(FlightService flightService, TransportService transportService,
+                            FlightRepository flightRepository){
         this.flightService = flightService;
         this.transportService = transportService;
+        this.flightRepository = flightRepository;
     }
 
     @GetMapping("flights")
@@ -58,6 +62,14 @@ public class FlightController {
     @GetMapping("flight/delete/{id}")
     public String deleteFlightById(Model model, @PathVariable String id){
         flightService.deleteById(Long.parseLong(id));
+        return "redirect:/flights";
+    }
+
+    @PostMapping
+    @RequestMapping("flights/delayflight/{numberOfDays}")
+    public String delayFlights(@PathVariable String numberOfDays){
+
+        flightService.delayFlight(Integer.parseInt(numberOfDays));
         return "redirect:/flights";
     }
 }
