@@ -57,6 +57,18 @@
                                     <input type="number" class="form-control" th:field="*{numberOfPassengers}"/>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-3 form-group">
+                                    <label>Transports:</label>
+                                    <select class="form-control" th:field="*{transports}" multiple="multiple">
+                                    <option th:each="transport : ${transports}"
+                                            th:value="${transport.getTransportId()}"
+                                            th:selected="${flight.getTransports().contains(transport)}"
+                                            th:text="${transport.getTransportId()} + ' ' + ${transport.getTransportCategory().model} "></option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

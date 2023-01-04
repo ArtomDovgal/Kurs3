@@ -50,7 +50,6 @@
 <!--                        ^
                             |
                         можливо тікетс-->
-
                 <option th:each="transport : ${flight.getTransports()}"
                         th:value="${transport.getTransportId()}"
                         th:text="${transport.getTransportId()} + ' ' + ${transport.getTransportCategory().model} "></option>

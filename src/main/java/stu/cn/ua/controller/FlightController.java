@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import stu.cn.ua.domain.Flight;
 import stu.cn.ua.service.FlightService;
+import stu.cn.ua.service.TransportService;
 
 @Controller
 public class FlightController {
@@ -13,8 +14,12 @@ public class FlightController {
     @Autowired
     private final FlightService flightService;
 
-    public FlightController(FlightService flightService){
+    @Autowired
+    private final TransportService transportService;
+
+    public FlightController(FlightService flightService, TransportService transportService){
         this.flightService = flightService;
+        this.transportService = transportService;
     }
 
     @GetMapping("flights")
@@ -31,6 +36,7 @@ public class FlightController {
     }
     @RequestMapping("flight/new")
     public String newFlight(Model model){
+        model.addAttribute("transports",transportService.findAll());
         model.addAttribute("flight", new Flight());
         return "flight/AddUpdateFlight";
     }
@@ -45,6 +51,7 @@ public class FlightController {
     @PostMapping
     @RequestMapping("flight/{id}/update")
     public String updateFlight(@PathVariable String id, Model model){
+        model.addAttribute("transports",transportService.findAll());
         model.addAttribute("flight",flightService.findFlightById(Long.parseLong(id)));
         return "flight/AddUpdateFlight";
     }
