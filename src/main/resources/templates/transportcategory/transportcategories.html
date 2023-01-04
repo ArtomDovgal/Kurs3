@@ -63,8 +63,13 @@
                 <option th:each="transport : ${transportcategory.getTransports()}" th:value="${transport.getTransportId()}" th:text="${transport.getTransportId()}"></option>
             </select>
         </td>
-        <td scope="col" ><a href="#" th:href="@{'/transportcategory/delete/'
-        + ${transportcategory.getTransportCategoryId()}}">Delete</a></td>
+        <td scope="col" >
+            <a href="#" th:href="@{'/transportcategory/delete/'+ ${transportcategory.getTransportCategoryId()}}">
+            <button type="button">Delete</button></a>
+            <a href="#" th:href="@{'/transportcategory/'+ ${transportcategory.getTransportCategoryId()} + '/update'}">
+                <button type="button">Edit</button></a>
+        </td>
+
     </tr>
     <tr scope="row">
         <td scope="col" ></td>

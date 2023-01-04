@@ -56,7 +56,12 @@
         <td scope="col" th:text="${passenger.getLastName()}"></td>
         <td scope="col" th:text="${passenger.getPhone()}"></td>
         <td scope="col" th:text="${passenger.getPrivileges()}"></td>
-        <td scope="col" ><a href="#" th:href="@{'/passenger/delete/' + ${passenger.getPassengerId()}}">Delete</a></td>
+        <td scope="col" >
+            <a href="#" th:href="@{'/passenger/delete/' + ${passenger.getPassengerId()}}">
+                <button type="button">Delete</button></a>
+            <a href="#" th:href="@{'/passenger/' + ${passenger.getPassengerId()} + '/update'}">
+                <button type="button"> Edit </button></a>
+        </td>
     </tr>
     <tr scope="row">
         <td scope="col" ></td>

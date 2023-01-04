@@ -55,7 +55,12 @@
                         th:text="${transport.getTransportId()} + ' ' + ${transport.getTransportCategory().model} "></option>
             </select>
         </td>
-        <td scope="col" ><a href="#" th:href="@{'/flight/delete/' + ${flight.getFlightId()}}">Delete</a></td>
+        <td scope="col" >
+<!--            <button th:attr="onclick="/flight/delete/' + '${flight.getFlightId()}'">Delete</button>-->
+            <a href="#" th:href="@{'/flight/delete/' + ${flight.getFlightId()}}">
+                <button type="button"> Delete </button></a>
+        <a href="#" th:href="@{'/flight/' + ${flight.getFlightId()} + '/update'}">
+            <button type="button"> Edit </button></a></td>
     </tr>
     <tr scope="row">
         <td scope="col" ></td>

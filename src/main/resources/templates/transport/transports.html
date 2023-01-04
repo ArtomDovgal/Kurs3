@@ -58,8 +58,11 @@
         <td scope="col" th:text="${transport.getTransportCategory().getTransportCategoryId()}"></td>
         <td scope="col" th:text="${transport.getNumberOfWorkers()}"></td>
 
-        <td scope="col" ><a href="#" th:href="@{'/transport/delete/'
-        + ${transport.getTransportId()}}">Delete</a></td>
+        <td scope="col" ><a href="#" th:href="@{'/transport/delete/'+ ${transport.getTransportId()}}">
+            <button type="button"> Delete</button></a>
+            <a href="#" th:href="@{'/transport/' + ${transport.getTransportId()} + '/update'}">
+                <button type="button"> Edit </button></a>
+        </td>
     </tr>
     <tr scope="row">
         <td scope="col" ></td>
