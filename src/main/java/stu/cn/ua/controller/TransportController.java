@@ -18,7 +18,8 @@ public class TransportController {
 
 
     @GetMapping("/transports")
-    public String getTransportCategories(Model model){
+    public String getTransports(Model model){
+        int d=transportService.countNumberOfSits();
         model.addAttribute("transports",transportService.findAll());
         return "/transport/transports";
     }

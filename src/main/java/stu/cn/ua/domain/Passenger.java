@@ -20,11 +20,15 @@ public class Passenger {
   @Column(name = "passenger_id")
   private Long passengerId;
 
+  @Column(name = "privileges")
   private String privileges;
+
   @Column(name = "first_name")
   private String firstName;
+
   @Column(name = "last_name")
   private String lastName;
+
   private String phone;
 
   @OneToMany(mappedBy = "passenger")

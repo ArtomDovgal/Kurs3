@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import stu.cn.ua.domain.Flight;
 import stu.cn.ua.domain.Passenger;
 
+import java.util.Map;
 import java.util.Set;
 @Repository
 

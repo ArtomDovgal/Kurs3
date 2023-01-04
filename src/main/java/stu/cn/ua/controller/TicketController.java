@@ -4,10 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import stu.cn.ua.domain.Ticket;
+import stu.cn.ua.domain.TicketCategory;
 import stu.cn.ua.mapper.TicketMapper;
 import stu.cn.ua.service.FlightService;
 import stu.cn.ua.service.PassengerService;
 import stu.cn.ua.service.TicketService;
+
+import java.util.Map;
 
 @Controller
 public class TicketController {
@@ -71,4 +74,5 @@ public class TicketController {
         ticketService.deleteByTicketId(Long.parseLong(id));
         return "redirect:/tickets";
     }
+
 }

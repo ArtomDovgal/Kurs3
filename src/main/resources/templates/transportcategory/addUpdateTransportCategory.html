@@ -44,19 +44,17 @@
                                     <label>Vehicle type:</label>
                                     <input type="text" class="form-control" th:field="*{vehicleType}"/>
                                 </div>
-
-
-<!--                                <ul th:each="transport :${allTransports}">-->
-<!--                                    <li><input type="radio" th:text="${transport.getTransportId()}"/></li>-->
-<!--                                </ul>-->
-
-
                             </div>
                         </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+        </div>
+        <div class="col-md-3">
+            <a th:href="@{'/trasnportcategories'}"><button>На головну</button></a>
+        </div>
+    </div>
         </div>
     </div>
 </div>

@@ -60,7 +60,9 @@
         <td>
             <select id="dropOperator">
                 <option value="0">select operator</option>
-                <option th:each="transport : ${transportcategory.getTransports()}" th:value="${transport.getTransportId()}" th:text="${transport.getTransportId()}"></option>
+                <option th:each="transport : ${transportcategory.getTransports()}"
+                        th:value="${transport.getTransportId()}"
+                        th:text="${transport.getTransportId()}"></option>
             </select>
         </td>
         <td scope="col" >
@@ -69,14 +71,6 @@
             <a href="#" th:href="@{'/transportcategory/'+ ${transportcategory.getTransportCategoryId()} + '/update'}">
                 <button type="button">Edit</button></a>
         </td>
-    </tr>
-    <tr scope="row">
-        <td scope="col" ></td>
-        <td scope="col" ><input type="text"></td>
-        <td scope="col" ><input type="text"></td>
-        <td scope="col" ><input type="text"></td>
-        <td scope="col" ><input type="text"></td>
-        <td scope="col" ><input type="button" value="&nbsp&nbsp Save  &nbsp"></td>
     </tr>
     </tbody>
 </table>

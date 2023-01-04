@@ -62,4 +62,15 @@ public class TransportService {
     {
         return transportRepository.findAll();
     }
+
+
+    public int countNumberOfSits()
+    {
+        int numberOfSeats=0;
+        Set<Transport> transports= transportRepository.findAll();
+
+        for(Transport transport:transports)
+            numberOfSeats+=transport.getNumberOfSeats();
+        return numberOfSeats;
+    }
 }

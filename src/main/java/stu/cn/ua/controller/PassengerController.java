@@ -25,6 +25,7 @@ public class PassengerController {
     @RequestMapping("passenger/{id}")
     public String showPassengerById(@PathVariable String id, Model model)
     {
+
         model.addAttribute("passenger",passengerService.findPassengerById(Long.parseLong(id)));
         return "passenger/passenger";
     }
