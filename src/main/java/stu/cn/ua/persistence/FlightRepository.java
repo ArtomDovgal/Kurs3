@@ -4,6 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import stu.cn.ua.domain.Flight;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 @Repository
 public interface FlightRepository extends CrudRepository<Flight,Long> {
@@ -16,5 +18,9 @@ public interface FlightRepository extends CrudRepository<Flight,Long> {
 
     Set<Flight> findAllByNumberOfPassengersGreaterThan(Integer price);
 
+    Set<Flight> findAllByArrivalPoint(String arrivalPoint);
 
+    Set<Flight> findAllByArrivalTimeAfter(LocalDateTime arrivalTime);
+
+    Set<Flight> findAllByDepartureTimeAfter(LocalDateTime arrivalTime);
 }

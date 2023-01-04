@@ -2,22 +2,17 @@ package stu.cn.ua.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import stu.cn.ua.domain.Flight;
-import stu.cn.ua.domain.Passenger;
-import stu.cn.ua.domain.Ticket;
-import stu.cn.ua.domain.Transport;
+import stu.cn.ua.domain.*;
 import stu.cn.ua.persistence.FlightRepository;
 import stu.cn.ua.persistence.PassengerRepository;
 import stu.cn.ua.persistence.TicketRepository;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 
 @Service
 public class TicketService {
+
 private final TicketRepository ticketRepository;
 private final PassengerRepository passengerRepository;
 private final FlightRepository flightRepository;
@@ -104,4 +99,57 @@ private final FlightRepository flightRepository;
     public Set<Ticket> findAll(){
         return ticketRepository.findAll();
     }
+
+    public Map<TicketCategory,Integer> countAmountOfTicketsOfEveryCategory()
+    {
+        Integer usual = 0,luxury=0,business=0;
+        Map<TicketCategory,Integer> result = new HashMap<>();
+        TicketCategory[] ticketCategories=TicketCategory.values();
+        Set<Ticket> tickets= ticketRepository.findAll();
+        List<Ticket> ticketArray=new ArrayList<>(tickets.stream().toList());
+        for(int i =0;i<ticketArray.size();i++)
+        {
+            for(int j =0;j<ticketCategories.length;j++)
+                switch (ticketCategories[j]) {
+                    case USUAL:
+                        if(ticketArray.get(i).getTicketCategory()==ticketCategories[j])
+                        {
+                            usual++;
+                        }
+                        break;
+                    case LUXURY:
+                    {
+                        if(ticketArray.get(i).getTicketCategory()==ticketCategories[j])
+                        {
+                            luxury++;
+                        }
+                    break;
+                    }
+                    case BUSINESS:
+                    {
+                        if(ticketArray.get(i).getTicketCategory()==ticketCategories[j])
+                        {
+                            business++;
+                        }
+                    break;
+                    }
+                }
+        }
+        Integer[] counts={usual,luxury,business};
+    for(int i =0;i<ticketCategories.length;i++)
+    {
+        result.put(ticketCategories[i],counts[i]);
+    }
+        return result;
+    }
+    public int countRevenueByCity(String city)
+    {
+        int counter = 0;
+        Set<Ticket> tickets=ticketRepository.findAll();
+        for(Ticket ticket:tickets)
+            if(ticket.getFlight().getArrivalPoint()==city)
+            counter+=ticket.getPrice();
+        return counter;
+    }
+
 }

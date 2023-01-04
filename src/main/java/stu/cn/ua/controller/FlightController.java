@@ -8,6 +8,13 @@ import stu.cn.ua.domain.Flight;
 import stu.cn.ua.service.FlightService;
 import stu.cn.ua.service.TransportService;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
 @Controller
 public class FlightController {
 

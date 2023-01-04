@@ -5,11 +5,13 @@ import stu.cn.ua.domain.Flight;
 import stu.cn.ua.domain.Ticket;
 import stu.cn.ua.domain.Transport;
 import stu.cn.ua.persistence.FlightRepository;
-import stu.cn.ua.persistence.FlightTransportRepository;
 import stu.cn.ua.persistence.TicketRepository;
 import stu.cn.ua.persistence.TransportRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -18,13 +20,12 @@ public class FlightService {
     private final TransportRepository transportRepository;
     private final TicketRepository ticketRepository;
 
-    private final FlightTransportRepository flightTransportRepository;
+
     public FlightService(FlightRepository flightRepository, TransportRepository transportRepository,
-                         TicketRepository ticketRepository, FlightTransportRepository flightTransportRepository) {
+                         TicketRepository ticketRepository) {
         this.flightRepository = flightRepository;
         this.transportRepository = transportRepository;
         this.ticketRepository = ticketRepository;
-        this.flightTransportRepository = flightTransportRepository;
     }
 
     public Flight findFlightById(Long id) {
@@ -32,14 +33,6 @@ public class FlightService {
     }
 
     public Flight save(Flight flight) {
-        //Set<Transport> transports = flight.getTransports();
-
-        //можливо замінить на емпті
-//        if(transports != null){
-//            for(Transport transport : transports){
-//                transport
-//            }
-//        }
 
         return flightRepository.save(flight);
     }
@@ -92,5 +85,19 @@ public class FlightService {
     }
     public Set<Flight> getAll () {
         return flightRepository.findAll();
+    }
+
+    public Set<Flight> findFlightByArrivalPoint(String arrivalPoint)
+    {
+       return flightRepository.findAllByArrivalPoint(arrivalPoint);
+    }
+
+    public Set<Flight> findFlightWithArrivalTimeGraterThen(LocalDateTime arrivalTime)
+    {
+        return flightRepository.findAllByArrivalTimeAfter(arrivalTime);
+    }
+    public Set<Flight> findAllByDepartureTimeAfter(LocalDateTime departureTime)
+    {
+        return flightRepository.findAllByArrivalTimeAfter(departureTime);
     }
 }
