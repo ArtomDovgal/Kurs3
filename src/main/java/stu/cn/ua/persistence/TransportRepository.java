@@ -1,7 +1,9 @@
 package stu.cn.ua.persistence;
 
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import stu.cn.ua.domain.Transport;
 
 import java.util.Set;
@@ -13,5 +15,7 @@ public interface TransportRepository extends CrudRepository<Transport,Long> {
     void deleteByTransportId(Long id);
 
     Set<Transport> findAll();
-
+    @Transactional
+    @Procedure(procedureName = "numberSeatsAllTransports")
+    int sumAllSeats();
 }

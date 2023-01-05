@@ -20,6 +20,7 @@ public class TransportController {
     @GetMapping("/transports")
     public String getTransports(Model model){
         int d=transportService.countNumberOfSits();
+        model.addAttribute("sumAllSeats",transportService.sumAllSeats());
         model.addAttribute("transports",transportService.findAll());
         return "/transport/transports";
     }
@@ -53,4 +54,12 @@ public class TransportController {
         transportService.deleteTransportById(Long.parseLong(id));
         return "redirect:/transports";
     }
+
+//    @PostMapping
+//    @RequestMapping("transports/sumSeats/")
+//    public String sumSeats(Model model){
+//        model.addAttribute("transports",transportService.findAll());
+//        model.addAttribute("sumAllSeats",transportService.sumAllSeats());
+//        return "transport/transports";
+//    }
 }

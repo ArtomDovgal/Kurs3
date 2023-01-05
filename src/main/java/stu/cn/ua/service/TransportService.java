@@ -73,4 +73,11 @@ public class TransportService {
             numberOfSeats+=transport.getNumberOfSeats();
         return numberOfSeats;
     }
+
+    @Transactional
+    public Integer sumAllSeats(){
+        Integer sum= transportRepository.sumAllSeats();
+        return sum;
+
+    }
 }

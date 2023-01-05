@@ -10,6 +10,7 @@ import stu.cn.ua.persistence.FlightTransportRepository;
 import stu.cn.ua.persistence.TicketRepository;
 import stu.cn.ua.persistence.TransportRepository;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,7 @@ public class FlightService {
     private final TicketRepository ticketRepository;
 
     private final FlightTransportRepository flightTransportRepository;
+
     public FlightService(FlightRepository flightRepository, TransportRepository transportRepository,
                          TicketRepository ticketRepository, FlightTransportRepository flightTransportRepository) {
         this.flightRepository = flightRepository;
@@ -47,10 +49,10 @@ public class FlightService {
 
     public void deleteById(Long id) {
         Flight flight = flightRepository.findFlightByFlightId(id);
-        for(Ticket ticket : flight.getTickets()){
-          Ticket chosenTicket = ticketRepository.findTicketByTicketId(ticket.getTicketId());
-          chosenTicket.setFlight(null);
-          ticketRepository.deleteById(chosenTicket.getTicketId());
+        for (Ticket ticket : flight.getTickets()) {
+            Ticket chosenTicket = ticketRepository.findTicketByTicketId(ticket.getTicketId());
+            chosenTicket.setFlight(null);
+            ticketRepository.deleteById(chosenTicket.getTicketId());
         }
         flight.getTickets().clear();
 
@@ -91,13 +93,31 @@ public class FlightService {
             flightRepository.save(flight);
         }
     }
-    public Set<Flight> getAll () {
+
+    public Set<Flight> getAll() {
         return flightRepository.findAll();
     }
 
     //можна додати еррор
     @Transactional
-    public void delayFlight(Integer days){
-        if(days > 0) flightRepository.delayFlights(days);
+    public void delayFlight(Integer days) {
+        if (days > 0) flightRepository.delayFlights(days);
+    }
+
+    //на головну флайтів, теж дроп менюшку з усіма ерайвал поінтами
+    public Set<Flight> findAllByArrivalPoint(String arrivalPoint) {
+        return flightRepository.findAllByArrivalPoint(arrivalPoint);
+    }
+
+    //на головну флайтів, інпут з type="datetime-local"
+    public Set<Flight> findAllByArrivalTimeBefore(LocalDateTime arrivalTime) {
+        return flightRepository.findAllByArrivalTimeBefore(arrivalTime);
+    }
+    public Set<String> getAllArrivalPoints(){
+        Set<String> arrivalPoints = new HashSet<>();
+        for (Flight flight: flightRepository.findAll()) {
+            arrivalPoints.add(flight.getArrivalPoint());
+        }
+        return arrivalPoints;
     }
 }

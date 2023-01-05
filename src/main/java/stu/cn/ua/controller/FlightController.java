@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import stu.cn.ua.domain.Flight;
 import stu.cn.ua.persistence.FlightRepository;
+import stu.cn.ua.persistence.FlightTransportRepository;
 import stu.cn.ua.service.FlightService;
 import stu.cn.ua.service.TransportService;
 
@@ -30,34 +31,54 @@ public class FlightController {
 
     class Numb{
         Integer numberOfDays;
+        String arrivalString;
 
         public Integer getNumberOfDays() {
             return numberOfDays;
         }
-
         public void setNumberOfDays(Integer numberOfDays) {
             this.numberOfDays = numberOfDays;
         }
+
+        public String getArrivalString() {
+            return arrivalString;
+        }
+
+        public void setArrivalString(String arrivalString) {
+            this.arrivalString = arrivalString;
+        }
     }
     Numb numberOfDaysClass = new Numb();
+    private final FlightTransportRepository flightTransportRepository;
 
 
     public FlightController(FlightService flightService, TransportService transportService,
-                            FlightRepository flightRepository){
+                            FlightRepository flightRepository,
+                            FlightTransportRepository flightTransportRepository){
         this.flightService = flightService;
         this.transportService = transportService;
         this.flightRepository = flightRepository;
+        this.flightTransportRepository = flightTransportRepository;
     }
 
     @GetMapping("flights")
     public String getFlights(Model model){
         model.addAttribute("flights", flightService.getAll());
        model.addAttribute("numberOfDaysClass",numberOfDaysClass);
+       model.addAttribute("arrivalPoints",flightService.getAllArrivalPoints());
        // model.addAttribute("numberOfDaysClass",numArtem);
         return "flight/flights";
     }
+    @GetMapping("flightsSearch")
+    public String getFlightsBySmth(Model model) {
+       // model.addAttribute("flights", flightService.getAll());
+        model.addAttribute("numberOfDaysClass", numberOfDaysClass);
+        // model.addAttribute("numberOfDaysClass",numArtem);
+        return "flight/flightsSearch";
+    }
 
-    @RequestMapping("flight/{id}")
+
+        @RequestMapping("flight/{id}")
     public String showFlightById(@PathVariable String id, Model model)
     {
         model.addAttribute("flight", flightService.findFlightById(Long.parseLong(id)));
@@ -80,6 +101,7 @@ public class FlightController {
     @PostMapping
     @RequestMapping("flight/{id}/update")
     public String updateFlight(@PathVariable String id, Model model){
+       // model.addAttribute(model.addAttribute(a))
         model.addAttribute("transports",transportService.findAll());
         model.addAttribute("flight",flightService.findFlightById(Long.parseLong(id)));
         return "flight/AddUpdateFlight";
@@ -96,6 +118,15 @@ public class FlightController {
 
         flightService.delayFlight(numberOfDaysClass.numberOfDays);
         return "redirect:/flights";
+    }
+    @PostMapping
+    @RequestMapping("flights/byarrivalpoint/")
+    public String flightsByArrivalPoint(@ModelAttribute Numb numberOfDaysClass,Model model){
+        model.addAttribute("flights",flightService.findAllByArrivalPoint(numberOfDaysClass.arrivalString));
+        model.addAttribute("numberOfDaysClass",numberOfDaysClass);
+        model.addAttribute("arrivalPoints",flightService.getAllArrivalPoints());
+        // model.addAttribute("numberOfDaysClass",numArtem);
+        return "flight/flights";
     }
 
 //    @PostMapping
