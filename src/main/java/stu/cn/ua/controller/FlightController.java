@@ -26,6 +26,22 @@ public class FlightController {
     private final TransportService transportService;
     private final FlightRepository flightRepository;
 
+//    Integer numArtem;
+
+    class Numb{
+        Integer numberOfDays;
+
+        public Integer getNumberOfDays() {
+            return numberOfDays;
+        }
+
+        public void setNumberOfDays(Integer numberOfDays) {
+            this.numberOfDays = numberOfDays;
+        }
+    }
+    Numb numberOfDaysClass = new Numb();
+
+
     public FlightController(FlightService flightService, TransportService transportService,
                             FlightRepository flightRepository){
         this.flightService = flightService;
@@ -36,6 +52,8 @@ public class FlightController {
     @GetMapping("flights")
     public String getFlights(Model model){
         model.addAttribute("flights", flightService.getAll());
+       model.addAttribute("numberOfDaysClass",numberOfDaysClass);
+       // model.addAttribute("numberOfDaysClass",numArtem);
         return "flight/flights";
     }
 
@@ -73,10 +91,20 @@ public class FlightController {
     }
 
     @PostMapping
-    @RequestMapping("flights/delayflight/{numberOfDays}")
-    public String delayFlights(@PathVariable String numberOfDays){
+    @RequestMapping("flights/delayflight/")
+    public String delayFlights(@ModelAttribute Numb numberOfDaysClass){
 
-        flightService.delayFlight(Integer.parseInt(numberOfDays));
+        flightService.delayFlight(numberOfDaysClass.numberOfDays);
         return "redirect:/flights";
     }
+
+//    @PostMapping
+//    @RequestMapping("flights/delayflight/")
+//    public String delayFlights(@ModelAttribute Integer numArtem){
+//
+//        flightService.delayFlight(numArtem);
+//        return "redirect:/flights";
+//    }
+
+
 }

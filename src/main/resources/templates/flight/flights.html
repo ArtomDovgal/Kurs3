@@ -88,18 +88,21 @@
     <div class="modal-dialog">
 
         <!-- Modal content-->
-        <div class="modal-content" th:with="someVariable=${1}">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Delay Flights</h4>
             </div>
             <div class="modal-body">
                 <p>Number of days :</p>
-                <input type = "number" th:text="${someVariable}">
+                <form  th:object="${numberOfDaysClass}" th:action="@{'/flights/delayflight/'}" method="post">
+                <input type = "number" th:field="*{numberOfDays}"  class="form-control">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
             </div>
             <div class="modal-footer">
-                <a href="#" th:href="@{'/flights/delayflight/' + ${someVariable}}">
-                    <button type="button"> Delay </button></a></td>
+<!--                <a href="#" th:href="@{'/flights/delayflight/' + ${numberOfDays}}">-->
+<!--                    <button type="button"> Delay </button></a></td>-->
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
