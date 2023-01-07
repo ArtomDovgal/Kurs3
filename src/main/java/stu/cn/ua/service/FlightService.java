@@ -6,7 +6,6 @@ import stu.cn.ua.domain.Flight;
 import stu.cn.ua.domain.Ticket;
 import stu.cn.ua.domain.Transport;
 import stu.cn.ua.persistence.FlightRepository;
-import stu.cn.ua.persistence.FlightTransportRepository;
 import stu.cn.ua.persistence.TicketRepository;
 import stu.cn.ua.persistence.TransportRepository;
 
@@ -20,14 +19,12 @@ public class FlightService {
     private final TransportRepository transportRepository;
     private final TicketRepository ticketRepository;
 
-    private final FlightTransportRepository flightTransportRepository;
 
     public FlightService(FlightRepository flightRepository, TransportRepository transportRepository,
-                         TicketRepository ticketRepository, FlightTransportRepository flightTransportRepository) {
+                         TicketRepository ticketRepository) {
         this.flightRepository = flightRepository;
         this.transportRepository = transportRepository;
         this.ticketRepository = ticketRepository;
-        this.flightTransportRepository = flightTransportRepository;
     }
 
     public Flight findFlightById(Long id) {
@@ -119,5 +116,8 @@ public class FlightService {
             arrivalPoints.add(flight.getArrivalPoint());
         }
         return arrivalPoints;
+    }
+    public Set<Flight> searchFlights(String word){
+        return flightRepository.searchedFlights(word);
     }
 }

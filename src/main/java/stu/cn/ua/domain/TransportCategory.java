@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import stu.cn.ua.domain.enums.VehicleType;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +22,8 @@ public class TransportCategory {
   private long transportCategoryId;
 
   @Column(name = "vechicle_type")
-  private String vehicleType;
+  @Enumerated(EnumType.STRING)
+  private VehicleType vehicleType;
 
   @Column(name = "the_number_of_seats_in_this_category")
   private long theNumberOfSeatsInThisCategory;
@@ -43,11 +45,11 @@ public class TransportCategory {
     this.transportCategoryId = transportCategoryId;
   }
 
-  public String getVehicleType() {
+  public VehicleType getVehicleType() {
     return vehicleType;
   }
 
-  public void setVehicleType(String vehicleType) {
+  public void setVehicleType(VehicleType vehicleType) {
     this.vehicleType = vehicleType;
   }
 

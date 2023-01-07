@@ -43,8 +43,19 @@
             data-toggle="modal" data-target="#findByFullName">Find by fullname</button>
     <a href="/passengers">
         <button type="button" class="btn btn-primary">Show all</button></a>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PassengerOfEachPrivilege">Get amount of passengers of each privilege</button>
     <a href="/passenger/new"><button type="button" class="btn btn-primary">Add</button></a>
 </div>
+
+<form class="form-inline" action="/flights/search/" method="post">
+    <button class="btn btn-outline-success btn-primary pull-right" type="submit">Search</button>
+    <input class="form-control pull-right" th:name="searchWord" type="text"
+           placeholder="Search" required aria-label="Search">
+    <div class="invalid-feedback">
+        Please provide a valid city.
+    </div>
+</form>
+
 <table class="table">
     <thead>
     <tr>
@@ -93,8 +104,37 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
     </div>
-
 </div>
+</div>
+<div id="PassengerOfEachPrivilege" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Passengers of each privilege</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Privilege</th>
+                        <th scope="col">Amount of passengers</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr scope="row" th:each="element : ${amountOfPassengerOfEachPrivilege
+                   }">
+                        <td scope="col" th:text="${element.getKey()}"></td>
+                        <td scope="col" th:text="${element.getValue()}"></td>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
 </div>
 </body>
 </html>

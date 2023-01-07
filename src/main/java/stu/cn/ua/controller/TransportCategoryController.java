@@ -24,9 +24,11 @@ public class TransportCategoryController {
         this.transportService = transportService;
     }
 
-    @GetMapping("transportcategories")
+    @GetMapping("/transportcategories")
     public String getTransportCategories(Model model){
         model.addAttribute("transportcategories",transportCategoryService.findAll());
+        model.addAttribute("amountOfTransportsOfEachVehicleType",transportCategoryService.countAmountOfTransportsOfEachVehicleType());
+
         return "/transportcategory/transportcategories";
     }
 

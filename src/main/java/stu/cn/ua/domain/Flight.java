@@ -2,8 +2,6 @@ package stu.cn.ua.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +31,7 @@ public class Flight {
 
   @OneToMany(mappedBy = "flight")
   private Set<Ticket> tickets = new HashSet<>();
+
   @Column(name="number_of_passengers")
   private long numberOfPassengers;
 

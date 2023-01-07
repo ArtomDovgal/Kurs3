@@ -1,7 +1,9 @@
 package stu.cn.ua.persistence;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import stu.cn.ua.domain.Flight;
@@ -27,5 +29,10 @@ public interface FlightRepository extends CrudRepository<Flight,Long> {
 
     Set<Flight> findAllByArrivalPoint(String arrivalPoint);
 
+    @Query(value = "SELECT * FROM flight f WHERE :word in(f.arrival_point,f.departute_point)",nativeQuery = true)
+//    @Query(value = "SELECT * FROM Flight f " +
+//            "f.departurePoint like :word or " +
+//            "f.arrivalPoint like :word", nativeQuery = true)
+    Set<Flight> searchedFlights( @Param("word")String word);
 }
 

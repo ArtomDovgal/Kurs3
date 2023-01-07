@@ -3,6 +3,7 @@ package stu.cn.ua.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stu.cn.ua.domain.*;
+import stu.cn.ua.domain.enums.TicketCategory;
 import stu.cn.ua.persistence.FlightRepository;
 import stu.cn.ua.persistence.PassengerRepository;
 import stu.cn.ua.persistence.TicketRepository;

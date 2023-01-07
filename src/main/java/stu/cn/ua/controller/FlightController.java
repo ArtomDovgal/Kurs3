@@ -6,16 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import stu.cn.ua.domain.Flight;
 import stu.cn.ua.persistence.FlightRepository;
-import stu.cn.ua.persistence.FlightTransportRepository;
 import stu.cn.ua.service.FlightService;
 import stu.cn.ua.service.TransportService;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 public class FlightController {
@@ -49,16 +41,23 @@ public class FlightController {
         }
     }
     Numb numberOfDaysClass = new Numb();
-    private final FlightTransportRepository flightTransportRepository;
 
 
     public FlightController(FlightService flightService, TransportService transportService,
-                            FlightRepository flightRepository,
-                            FlightTransportRepository flightTransportRepository){
+                            FlightRepository flightRepository){
         this.flightService = flightService;
         this.transportService = transportService;
         this.flightRepository = flightRepository;
-        this.flightTransportRepository = flightTransportRepository;
+    }
+
+    @PostMapping
+    @RequestMapping("flights/search/")
+    public String flightsSearch(@RequestParam(name = "searchWord") String searchWord,Model model){
+        model.addAttribute("flights",flightService.searchFlights(searchWord));
+        model.addAttribute("numberOfDaysClass",numberOfDaysClass);
+        model.addAttribute("arrivalPoints",flightService.getAllArrivalPoints());
+        // model.addAttribute("numberOfDaysClass",numArtem);
+        return "flight/flights";
     }
 
     @GetMapping("flights")

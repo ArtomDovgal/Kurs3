@@ -17,9 +17,17 @@ public class PassengerController {
         this.passengerService = passengerService;
     }
 
+    @PostMapping
+    @RequestMapping("passenger/search/")
+    public String flightsSearch(@RequestParam(name = "searchWord") String searchWord,Model model){
+        model.addAttribute("flights",passengerService.searchPassenger(searchWord));
+        return "passenger/passengers";
+    }
+
     @GetMapping("passengers")
     public String getPassengers(Model model){
         model.addAttribute("passengers",passengerService.findAll());
+        model.addAttribute("amountOfPassengerOfEachPrivilege",passengerService.countAmountOfPassengersOfEachPrivileges());
         return "passenger/passengers";
     }
     @RequestMapping("passenger/{id}")

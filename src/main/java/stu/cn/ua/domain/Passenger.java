@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import stu.cn.ua.domain.enums.PassengerPrivileges;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +23,8 @@ public class Passenger {
   private Long passengerId;
 
   @Column(name = "privileges")
-  private String privileges;
+  @Enumerated(EnumType.STRING)
+  private PassengerPrivileges privileges;
 
   @Column(name = "first_name")
   private String firstName;

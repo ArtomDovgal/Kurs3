@@ -1,6 +1,7 @@
 package stu.cn.ua.domain;
 
 import jakarta.persistence.*;
+import stu.cn.ua.domain.enums.TicketCategory;
 import stu.cn.ua.mapper.TicketMapper;
 
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ public class Ticket {
   @Column(name = "date_of_departure_on_the_ticket")
   private LocalDateTime dateOfDepartureOnTheTicket;
 
-  @Column(name = "date_and_time_of_tiket_sale")
+  @Column(name = "date_and_time_of_ticket_sale")
   private LocalDateTime dateAndTimeOfTiketSale;
 
   @Column(name = "date_and_time_of_ticket_booking")
