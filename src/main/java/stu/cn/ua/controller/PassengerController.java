@@ -62,7 +62,7 @@ public class PassengerController {
 
     @PostMapping
     @RequestMapping("/passengers/findByFullName/")
-    public String updatePassenger(@RequestParam(name = "firstname") String firstname,
+    public String findPassenger(@RequestParam(name = "firstname") String firstname,
                                   @RequestParam(name = "lastname") String lastname, Model model){
         model.addAttribute("passengers",passengerService.findByFirstNameAndLastName(firstname,lastname));
         return "passenger/passengers";

@@ -40,11 +40,11 @@
 <br>
 <div class="btn-group">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delayModal">Delay</button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ArrivalPlaceModal">Procedure2</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ArrivalPlaceModal">Find by Arrival place</button>
+    <a href="/flights"> <button type="button" class="btn btn-primary" data-toggle="modal">Show all</button></a>
     <a href="flight/new"><button type="button" class="btn btn-primary">Add</button></a>
 </div>
 <br>
-
 <form class="form-inline" action="/flights/search/" method="post">
     <button class="btn btn-outline-success btn-primary pull-right" type="submit">Search</button>
     <input class="form-control pull-right" th:name="searchWord" type="text"
@@ -53,7 +53,6 @@
         Please provide a valid city.
     </div>
 </form>
-
 <table class="table">
     <thead>
     <tr>

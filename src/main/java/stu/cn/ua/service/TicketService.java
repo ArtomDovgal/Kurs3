@@ -181,4 +181,7 @@ public class TicketService {
         return ticketRepository.revenueByCity(city);
     }
 
+    public Set<Ticket> searchTickets(String word){
+        return ticketRepository.searchedTickets(word);
+    }
 }

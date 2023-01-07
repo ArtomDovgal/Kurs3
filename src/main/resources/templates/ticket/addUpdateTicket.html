@@ -49,22 +49,22 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Booking:</label>
-                                    <input type="datetime-local" class="form-control" th:field="*{dateAndTimeOfTicketBooking}"/>
+                                    <input type="datetime-local" class="form-control" required th:field="*{dateAndTimeOfTicketBooking}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Sale:</label>
-                                    <input type="datetime-local" class="form-control" th:field="*{dateAndTimeOfTiketSale}"/>
+                                    <input type="datetime-local" class="form-control" required th:field="*{dateAndTimeOfTiketSale}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Departure:</label>
-                                    <input type="datetime-local" class="form-control" th:field="*{dateOfDepartueOnTheTicket}"/>
+                                    <input type="datetime-local" class="form-control" required th:field="*{dateOfDepartueOnTheTicket}"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Passenger id:</label>
                                     <!--<input class="form-control" th:value="*{getPassenger().passengerId}"/>-->
-                                    <select class="form-control" name="select"  th:field="*{passenger_id}">
+                                    <select class="form-control" name="select"  th:field="*{passenger_id}" required>
                                         <option th:each="passenger1 : ${passengers}"
                                                 th:value="${passenger1.passengerId}"
                                                 th:text="${passenger1.passengerId.toString()}">
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Category:</label>
-                                    <select class="form-control" name="select"  th:field="*{ticketCategory}"> <!--Supplement an id here instead of using 'name'-->
+                                    <select class="form-control" name="select"  required th:field="*{ticketCategory}"> <!--Supplement an id here instead of using 'name'-->
                                         <option value="USUAL">USUAL</option>
                                         <option value="LUXURY">LUXURY</option>
                                         <option value="BUSINESS">BUSINESS</option>
@@ -81,14 +81,14 @@
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>price:</label>
-                                    <input type="number" class="form-control" th:field="*{price}"/>
+                                    <input type="number" class="form-control" required th:field="*{price}"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>flight:</label>
                                     <!--<input class="form-control" th:value="*{getFlight().flightId}"/>-->
-                                    <select class="form-control" name="select" th:field="*{flight_id}">
+                                    <select class="form-control" name="select" th:field="*{flight_id}" required>
                                         <option th:each="flight1 : ${flights}"
                                                 th:value="${flight1.flightId}"
                                                 th:text="${flight1.getFlightId()} + ' ' + ${flight1.getDeparturePoint()} + ' - ' + ${flight1.getArrivalPoint()} "></option>

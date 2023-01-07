@@ -54,28 +54,29 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>FirstName:</label>
-                                    <input type="text" class="form-control" th:field="*{firstName}"/>
+                                    <input type="text" class="form-control" required th:field="*{firstName}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>LastName:</label>
-                                    <input type="text" class="form-control" th:field="*{lastName}"/>
+                                    <input type="text" class="form-control" required th:field="*{lastName}"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
-                                    <label>Phone:</label>
-                                    <input type="text" class="form-control" th:field="*{phone}"/>
+                                    <label>Phone<br>(ххх-ххх-ххх-ххх): </label>
+                                    <input type="text" class="form-control"pattern="^\d{3}-\d{3}-\d{3}-\d{3}$" required
+                                           data-bind="value:replyNumber" th:field="*{phone}"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Privileges:</label>
 <!--                                    <input type="text" class="form-control" th:field="*{privileges}"/>-->
-                                    <select name="privileges" id="dropOperator">
-                                        <option  th:value="Student" th:text="Student" th:field="*{privileges}"></option>
-                                        <option  th:value="Pencioner" th:text="Pencioner" th:field="*{privileges}"></option>
-                                        <option  th:value="Disabled" th:text="Disabled" th:field="*{privileges}"></option>
-                                        <option  th:value="Nothing" th:text="Nothing" th:field="*{privileges}"></option>
+                                    <select name="privileges" id="dropOperator" required>
+                                        <option  th:value="STUDENT" th:text="STUDENT" th:field="*{privileges}"></option>
+                                        <option  th:value="PENCIONER" th:text="PENCIONER" th:field="*{privileges}"></option>
+                                        <option  th:value="DISABLED" th:text="DISABLED" th:field="*{privileges}"></option>
+                                        <option  th:value="NOTHING" th:text="NOTHING" th:field="*{privileges}"></option>
 
                                     </select>
                                 </div>

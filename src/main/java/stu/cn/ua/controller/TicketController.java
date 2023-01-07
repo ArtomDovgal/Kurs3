@@ -73,4 +73,13 @@ public class TicketController {
         ticketService.deleteByTicketId(Long.parseLong(id));
         return "redirect:/tickets";
     }
+
+    @PostMapping
+    @RequestMapping("tickets/search/")
+    public String ticketsSearch(@RequestParam(name = "searchWord") String searchWord,Model model){
+        model.addAttribute("tickets",ticketService.searchTickets(searchWord));
+        model.addAttribute("cities",ticketService.getAllCities());
+        model.addAttribute("amountOfTicketsOfEveryCategory",ticketService.countAmountOfTicketsOfEveryCategory());
+        return "/ticket/tickets";
+    }
 }

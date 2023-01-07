@@ -50,15 +50,15 @@ public class FlightController {
         this.flightRepository = flightRepository;
     }
 
-    @PostMapping
-    @RequestMapping("flights/search/")
-    public String flightsSearch(@RequestParam(name = "searchWord") String searchWord,Model model){
-        model.addAttribute("flights",flightService.searchFlights(searchWord));
-        model.addAttribute("numberOfDaysClass",numberOfDaysClass);
-        model.addAttribute("arrivalPoints",flightService.getAllArrivalPoints());
-        // model.addAttribute("numberOfDaysClass",numArtem);
-        return "flight/flights";
-    }
+//    @PostMapping
+//    @RequestMapping("flights/search/")
+//    public String flightsSearchsmth(@RequestParam(name = "searchWord") String searchWord,Model model){
+//        model.addAttribute("flights",flightService.searchFlights(searchWord));
+//        model.addAttribute("numberOfDaysClass",numberOfDaysClass);
+//        model.addAttribute("arrivalPoints",flightService.getAllArrivalPoints());
+//        // model.addAttribute("numberOfDaysClass",numArtem);
+//        return "flight/flights";
+//    }
 
     @GetMapping("flights")
     public String getFlights(Model model){
@@ -68,13 +68,13 @@ public class FlightController {
        // model.addAttribute("numberOfDaysClass",numArtem);
         return "flight/flights";
     }
-    @GetMapping("flightsSearch")
-    public String getFlightsBySmth(Model model) {
-       // model.addAttribute("flights", flightService.getAll());
-        model.addAttribute("numberOfDaysClass", numberOfDaysClass);
-        // model.addAttribute("numberOfDaysClass",numArtem);
-        return "flight/flightsSearch";
-    }
+//    @GetMapping("flightsSearch")
+//    public String getFlightsBySmth(Model model) {
+//       // model.addAttribute("flights", flightService.getAll());
+//        model.addAttribute("numberOfDaysClass", numberOfDaysClass);
+//        // model.addAttribute("numberOfDaysClass",numArtem);
+//        return "flight/flightsSearch";
+//    }
 
 
         @RequestMapping("flight/{id}")
@@ -136,6 +136,14 @@ public class FlightController {
 //        flightService.delayFlight(numArtem);
 //        return "redirect:/flights";
 //    }
-
+@PostMapping
+@RequestMapping("flights/search/")
+public String flightsSearch(@RequestParam(name = "searchWord") String searchWord,Model model){
+    model.addAttribute("flights",flightService.searchFlights(searchWord));
+    model.addAttribute("numberOfDaysClass",numberOfDaysClass);
+    model.addAttribute("arrivalPoints",flightService.getAllArrivalPoints());
+    // model.addAttribute("numberOfDaysClass",numArtem);
+    return "flight/flights";
+}
 
 }

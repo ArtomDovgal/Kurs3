@@ -30,9 +30,5 @@ public interface FlightRepository extends CrudRepository<Flight,Long> {
     Set<Flight> findAllByArrivalPoint(String arrivalPoint);
 
     @Query(value = "SELECT * FROM flight f WHERE :word in(f.arrival_point,f.departute_point)",nativeQuery = true)
-//    @Query(value = "SELECT * FROM Flight f " +
-//            "f.departurePoint like :word or " +
-//            "f.arrivalPoint like :word", nativeQuery = true)
     Set<Flight> searchedFlights( @Param("word")String word);
 }
-

@@ -39,10 +39,21 @@
 <h1>Tickets</h1>
 <br>
 <div class="btn-group">
+    <a href="/tickets"> <button type="button" class="btn btn-primary" data-toggle="modal">Show all</button></a>
+    <a href="/ticket/new"><button type="button" class="btn btn-primary" data-toggle="modal">Add</button></a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Revenue">Revenue</button>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TicketsOfEachCategory">Get amount of tickets of each category</button>
-    <a href="/ticket/new"><button type="button" class="btn btn-primary" >Add</button></a>
+
 </div>
+
+<form class="form-inline" action="/tickets/search/" method="post">
+    <button class="btn btn-outline-success btn-primary pull-right" type="submit">Search</button>
+    <input class="form-control pull-right" th:name="searchWord" type="text"
+           placeholder="Search" required aria-label="Search">
+    <div class="invalid-feedback">
+        Please provide a valid information.
+    </div>
+</form>
 <table class="table">
     <thead>
     <tr>

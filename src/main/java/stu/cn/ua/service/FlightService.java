@@ -120,4 +120,6 @@ public class FlightService {
     public Set<Flight> searchFlights(String word){
         return flightRepository.searchedFlights(word);
     }
+
+
 }

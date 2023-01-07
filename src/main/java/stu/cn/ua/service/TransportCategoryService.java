@@ -1,6 +1,7 @@
 package stu.cn.ua.service;
 
 import org.springframework.stereotype.Service;
+import stu.cn.ua.domain.Flight;
 import stu.cn.ua.domain.Passenger;
 import stu.cn.ua.domain.Transport;
 import stu.cn.ua.domain.TransportCategory;
@@ -92,5 +93,9 @@ public class TransportCategoryService {
         }
         return result;
     }
+    public Set<TransportCategory> searchTransportCategories(String word){
+        return transportCategoryRepository.searchedTransportCategories(word);
+    }
+
 
 }
