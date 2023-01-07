@@ -102,48 +102,48 @@ public class TicketService {
 
 
 //    //на головну тікетів, теж вивести формочку
-//    public Map<TicketCategory,Integer> countAmountOfTicketsOfEveryCategory()
-//    {
-//        Integer usual = 0,luxury=0,business=0;
-//        Map<TicketCategory,Integer> result = new HashMap<>();
-//        TicketCategory[] ticketCategories=TicketCategory.values();
-//        Set<Ticket> tickets= ticketRepository.findAll();
-//        List<Ticket> ticketArray=new ArrayList<>(tickets.stream().toList());
-//        for(int i =0;i<ticketArray.size();i++)
-//        {
-//            for(int j =0;j<ticketCategories.length;j++)
-//                switch (ticketCategories[j]) {
-//                    case USUAL:
-//                        if(ticketArray.get(i).getTicketCategory()==ticketCategories[j])
-//                        {
-//                            usual++;
-//                        }
-//                        break;
-//                    case LUXURY:
-//                    {
-//                        if(ticketArray.get(i).getTicketCategory()==ticketCategories[j])
-//                        {
-//                            luxury++;
-//                        }
-//                    break;
-//                    }
-//                    case BUSINESS:
-//                    {
-//                        if(ticketArray.get(i).getTicketCategory()==ticketCategories[j])
-//                        {
-//                            business++;
-//                        }
-//                    break;
-//                    }
-//                }
-//        }
-//        Integer[] counts={usual,luxury,business};
-//    for(int i =0;i<ticketCategories.length;i++)
-//    {
-//        result.put(ticketCategories[i],counts[i]);
-//    }
-//        return result;
-//    }
+    public Map<TicketCategory,Integer> countAmountOfTicketsOfEveryCategory()
+    {
+        Integer usual = 0,luxury=0,business=0;
+        Map<TicketCategory,Integer> result = new HashMap<>();
+        TicketCategory[] ticketCategories=TicketCategory.values();
+        Set<Ticket> tickets= ticketRepository.findAll();
+        List<Ticket> ticketArray=new ArrayList<>(tickets.stream().toList());
+        for(int i =0;i<ticketArray.size();i++)
+        {
+            for(int j =0;j<ticketCategories.length;j++)
+                switch (ticketCategories[j]) {
+                    case USUAL:
+                        if(ticketArray.get(i).getTicketCategory()==ticketCategories[j])
+                        {
+                            usual++;
+                        }
+                        break;
+                    case LUXURY:
+                    {
+                        if(ticketArray.get(i).getTicketCategory()==ticketCategories[j])
+                        {
+                            luxury++;
+                        }
+                    break;
+                    }
+                    case BUSINESS:
+                    {
+                        if(ticketArray.get(i).getTicketCategory()==ticketCategories[j])
+                        {
+                            business++;
+                        }
+                    break;
+                    }
+                }
+        }
+        Integer[] counts={usual,luxury,business};
+    for(int i =0;i<ticketCategories.length;i++)
+    {
+        result.put(ticketCategories[i],counts[i]);
+    }
+        return result;
+    }
 
 
     public int countRevenueByCity(String city)

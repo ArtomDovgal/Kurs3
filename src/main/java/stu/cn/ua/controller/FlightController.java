@@ -94,6 +94,7 @@ public class FlightController {
     @PostMapping
     @RequestMapping("flight/")
     public String saveOrUpdate(@ModelAttribute Flight flight){
+
         Flight flight1=flightService.save(flight);
         return "redirect:"+flight1.getFlightId();
     }

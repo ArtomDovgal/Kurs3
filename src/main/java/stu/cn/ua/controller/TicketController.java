@@ -11,6 +11,7 @@ import stu.cn.ua.service.PassengerService;
 import stu.cn.ua.service.TicketService;
 
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class TicketController {
@@ -23,6 +24,8 @@ public class TicketController {
     @GetMapping("/tickets")
     public String getTickets(Model model){
         model.addAttribute("tickets",ticketService.findAll());
+        model.addAttribute("cities",ticketService.getAllCities());
+        model.addAttribute("amountOfTicketsOfEveryCategory",ticketService.countAmountOfTicketsOfEveryCategory());
         return "/ticket/tickets";
     }
 
@@ -74,19 +77,4 @@ public class TicketController {
         ticketService.deleteByTicketId(Long.parseLong(id));
         return "redirect:/tickets";
     }
-    @PostMapping
-    @RequestMapping("ticket/revenue/")
-    public String countRevenueByCity(@RequestParam(name = "city") String city, Model model){
-
-        model.addAttribute("revenue",ticketService.revenueByCity(city));
-        model.addAttribute("tickets",ticketService.findAllByArrivalPoint(city));
-
-        return "/ticket/findTicket";
-    }
-//    @GetMapping("/tickets")
-//    public String getTickets(Model model){
-//        model.addAttribute("tickets",ticketService.findAll());
-//        model.addAttribute("cities",ticketService.getAllCities());
-//        return "/ticket/tickets";
-//    }
 }
