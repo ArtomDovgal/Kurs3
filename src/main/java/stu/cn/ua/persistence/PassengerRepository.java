@@ -18,4 +18,8 @@ public interface PassengerRepository extends CrudRepository<Passenger,Long> {
     Set<Passenger> findAll();
     Set<Passenger> findAllByFirstName(String firstName);
     Passenger save(Passenger passenger);
+
+    @Transactional
+    @Procedure(procedureName = "passengerByFullName")
+    Set<Passenger> passengerByFullName(String firstName,String lastName);
 }

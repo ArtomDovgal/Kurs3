@@ -51,4 +51,12 @@ public class PassengerController {
         passengerService.deleteByPassengerId(Long.parseLong(id));
         return "redirect:/passengers";
     }
+
+    @PostMapping
+    @RequestMapping("/passengers/findByFullName/")
+    public String updatePassenger(@RequestParam(name = "firstname") String firstname,
+                                  @RequestParam(name = "lastname") String lastname, Model model){
+        model.addAttribute("passengers",passengerService.findByFirstNameAndLastName(firstname,lastname));
+        return "passenger/passengers";
+    }
 }

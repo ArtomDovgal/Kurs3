@@ -2,43 +2,49 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>FastPrice</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href = "style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">FastPrice</a>
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/flights"><h4>Flights </h4></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="/tickets"><h4> Tickets </h4></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="/passengers"><h4> Passengers </h4></a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" href="/transports"><h4> Transports </h4></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/transportcategories"><h4> Transport categories </h4></a>
             </li>
         </ul>
     </div>
 </nav>
+<br>
 <h1>Passengers</h1>
-
+<br>
+<div class="btn-group">
+    <button type="button" class="btn btn-primary"
+            data-toggle="modal" data-target="#findByFullName">Find by fullname</button>
+    <a href="/passengers">
+        <button type="button" class="btn btn-primary">Show all</button></a>
+    <a href="/passenger/new"><button type="button" class="btn btn-primary">Add</button></a>
+</div>
 <table class="table">
     <thead>
     <tr>
@@ -58,20 +64,38 @@
         <td scope="col" th:text="${passenger.getPrivileges()}"></td>
         <td scope="col" >
             <a href="#" th:href="@{'/passenger/delete/' + ${passenger.getPassengerId()}}">
-                <button type="button">Delete</button></a>
+                <button type="button" class="btn btn-primary">Delete</button></a>
             <a href="#" th:href="@{'/passenger/' + ${passenger.getPassengerId()} + '/update'}">
-                <button type="button"> Edit </button></a>
+                <button type="button" class="btn btn-primary"> Edit </button></a>
         </td>
-    </tr>
-    <tr scope="row">
-        <td scope="col" ></td>
-        <td scope="col" ><input type="text"></td>
-        <td scope="col" ><input type="text"></td>
-        <td scope="col" ><input type="text"></td>
-        <td scope="col" ><input type="text"></td>
-        <td scope="col" ><input type="button" value="&nbsp&nbsp Save  &nbsp"></td>
     </tr>
     </tbody>
 </table>
+
+<!--fsdf-->
+<div id="findByFullName" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Find passenger: </h4>
+            </div>
+            <form th:action="@{'/passengers/findByFullName/'}" method="post">
+            <p th:text="'Firstname : '"></p>
+            <input type="text" th:name = "firstname">
+            <p th:text="'Lastname : '"></p>
+            <input type="text" th:name = "lastname">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+
+</div>
+</div>
 </body>
 </html>

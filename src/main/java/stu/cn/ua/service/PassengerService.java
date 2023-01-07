@@ -59,4 +59,11 @@ public class PassengerService {
         return passengerRepository.findAll();
     }
 
+    @Transactional
+    public Set<Passenger> findByFirstNameAndLastName(String firstName,String lastName){
+        if( firstName != "" && lastName !="" ){
+            return passengerRepository.passengerByFullName(firstName, lastName);
+        }else
+            return new HashSet<>();
+}
 }
