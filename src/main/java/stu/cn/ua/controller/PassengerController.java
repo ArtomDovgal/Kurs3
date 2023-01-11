@@ -33,29 +33,30 @@ public class PassengerController {
     @RequestMapping("passenger/{id}")
     public String showPassengerById(@PathVariable String id, Model model)
     {
-
         model.addAttribute("passenger",passengerService.findPassengerById(Long.parseLong(id)));
         return "passenger/passenger";
     }
     @RequestMapping("passenger/new")
     public String newPassenger(Model model){
         model.addAttribute("passenger", new Passenger());
-        return "passenger/addUpdatePassenger";
+        return "passenger/AddUpdatePassenger";
     }
     @PostMapping
     @RequestMapping("passenger/")
     public String saveOrUpdate(@ModelAttribute Passenger passenger){
-        Passenger passenger1=passengerService.save(passenger);
-        return "redirect:"+passenger1.getPassengerId();
+       passengerService.save(passenger);
+        return "redirect:/passengers";
     }
     @PostMapping
     @RequestMapping("passenger/{id}/update")
     public String updatePassenger(@PathVariable String id, Model model){
         model.addAttribute("passenger",passengerService.findPassengerById(Long.parseLong(id)));
-        return "/passenger/addUpdatePassenger";
+        return "passenger/AddUpdatePassenger";
     }
+
+
     @GetMapping("passenger/delete/{id}")
-    public String deletePassengerById(Model model, @PathVariable String id){
+    public String deletePassengerById(@PathVariable String id){
         passengerService.deleteByPassengerId(Long.parseLong(id));
         return "redirect:/passengers";
     }

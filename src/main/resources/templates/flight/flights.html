@@ -39,9 +39,8 @@
 <h1>Flights</h1>
 <br>
 <div class="btn-group">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#delayModal">Delay</button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ArrivalPlaceModal">Find by Arrival place</button>
-    <a href="/flights"> <button type="button" class="btn btn-primary" data-toggle="modal">Show all</button></a>
+    <button style="margin-left: 20px; margin-right: 20px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#delayModal">Delay</button>
+    <button style="margin-right: 20px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ArrivalPlaceModal">Find by Arrival place</button>
     <a href="flight/new"><button type="button" class="btn btn-primary">Add</button></a>
 </div>
 <br>
@@ -75,17 +74,13 @@
         <td scope="col" th:text="${flight.getArrivalTime()}"></td>
         <td scope="col" th:text="${flight.getNumberOfPassengers()}"></td>
         <td>
-            <select name="Transports" id="dropOperator">
-<!--                        ^
-                            |
-                        можливо тікетс-->
+            <select name="Transports" >
                 <option th:each="transport : ${flight.getTransports()}"
                         th:value="${transport.getTransportId()}"
                         th:text="${transport.getTransportId()} + ' ' + ${transport.getTransportCategory().model} "></option>
             </select>
         </td>
         <td scope="col" >
-<!--            <button th:attr="onclick="/flight/delete/' + '${flight.getFlightId()}'">Delete</button>-->
             <a href="#" th:href="@{'/flight/delete/' + ${flight.getFlightId()}}">
                 <button type="button" class="btn btn-primary"> Delete </button></a>
         <a href="#" th:href="@{'/flight/' + ${flight.getFlightId()} + '/update'}">
@@ -96,24 +91,23 @@
 
 <div id="delayModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Delay Flights</h4>
+                <h4 class="modal-title">Revenue</h4>
             </div>
             <div class="modal-body">
-                <p>Number of days :</p>
-                <form  th:object="${numberOfDaysClass}" th:action="@{'/flights/delayflight/'}" method="post">
-                <input type = "number" th:field="*{numberOfDays}"  class="form-control">
+                <form  th:object="${hours}" th:action="@{'/flights/delayflight/'}" method="post">
+
+                    <input type="number" th:name="hours">
+
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -123,11 +117,11 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Delay Flights</h4>
+                <h4 class="modal-title">Find flights by arrival point</h4>
             </div>
             <div class="modal-body">
-                <form  th:object="${numberOfDaysClass}" th:action="@{'/flights/byarrivalpoint/'}" method="post">
-                <select name="Transports" id="dropOperator" th:field="*{arrivalString}">
+                <form  th:object="${arrivalPoints}" th:action="@{'/flights/byarrivalpoint/'}" method="post">
+                <select name="Transports" th:name="arrivalPoint">
                     <option th:each="arrivalPoint : ${arrivalPoints}"
                             th:value="${arrivalPoint}"
                             th:text="${arrivalPoint} "></option>

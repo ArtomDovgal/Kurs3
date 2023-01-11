@@ -122,8 +122,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr scope="row" th:each="element : ${amountOfPassengerOfEachPrivilege
-                   }">
+                    <tr scope="row" th:each="element : ${amountOfPassengerOfEachPrivilege}">
                         <td scope="col" th:text="${element.getKey()}"></td>
                         <td scope="col" th:text="${element.getValue()}"></td>
                     </tbody>

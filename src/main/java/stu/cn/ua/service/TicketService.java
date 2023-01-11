@@ -170,11 +170,9 @@ public class TicketService {
         for(Ticket ticket:ticketRepository.findAll()) {
             if (ticket.getFlight().getArrivalPoint().equals(city))
                 ticketsToPassedCity.add(ticket);
-
         }
         return ticketsToPassedCity;
     }
-
     @Transactional
     public int revenueByCity(String city)
     {

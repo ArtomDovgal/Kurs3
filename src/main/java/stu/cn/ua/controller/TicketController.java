@@ -21,6 +21,7 @@ public class TicketController {
     public String getTickets(Model model){
         model.addAttribute("tickets",ticketService.findAll());
         model.addAttribute("cities",ticketService.getAllCities());
+        model.addAttribute("city",new String());
         model.addAttribute("amountOfTicketsOfEveryCategory",ticketService.countAmountOfTicketsOfEveryCategory());
         return "/ticket/tickets";
     }
@@ -57,7 +58,7 @@ public class TicketController {
         Long passengerId = passengerService.findPassengerById(ticketMapper.getPassenger_id()).getPassengerId();
         Long flightId= flightService.findFlightById(ticketMapper.getFlight_id()).getFlightId();
         Ticket ticket1=ticketService.save(ticket,flightId,passengerId);
-        return "redirect:"+ticket1.getTicketId();
+        return "redirect:/tickets";
     }
     @PostMapping
     @RequestMapping("ticket/{id}/update")
@@ -75,11 +76,22 @@ public class TicketController {
     }
 
     @PostMapping
+    @RequestMapping("ticket/revenue/")
+    public String showRevenues(@RequestParam(name = "city") String city,Model model)
+    {
+        model.addAttribute("revenue",ticketService.revenueByCity(city));
+        model.addAttribute("tickets",ticketService.findAllByArrivalPoint(city));
+
+        return "/ticket/revenue";
+    }
+
+    @PostMapping
     @RequestMapping("tickets/search/")
     public String ticketsSearch(@RequestParam(name = "searchWord") String searchWord,Model model){
         model.addAttribute("tickets",ticketService.searchTickets(searchWord));
         model.addAttribute("cities",ticketService.getAllCities());
-        model.addAttribute("amountOfTicketsOfEveryCategory",ticketService.countAmountOfTicketsOfEveryCategory());
+        model.addAttribute("amountOfTicketsOfEveryCategory",
+                ticketService.countAmountOfTicketsOfEveryCategory());
         return "/ticket/tickets";
     }
 }

@@ -17,40 +17,42 @@ public class TransportController {
     }
 
 
-    @GetMapping("/transports")
+    @GetMapping("transports")
     public String getTransports(Model model){
         int d=transportService.countNumberOfSits();
         model.addAttribute("sumAllSeats",transportService.sumAllSeats());
         model.addAttribute("transports",transportService.findAll());
-        return "/transport/transports";
+        return "transport/transports";
     }
 
-    @RequestMapping("transport/{id}")
-    public String showTransportById(@PathVariable String id, Model model)
-    {
-        model.addAttribute("transport",transportService.findTransportById(Long.parseLong(id)));
-        return "transport/transport";
-    }
+//    @RequestMapping("transport/{id}")
+//    public String showTransportById(@PathVariable String id, Model model)
+//    {
+//        model.addAttribute("transport",transportService.findTransportById(Long.parseLong(id)));
+//        return "transport/transport";
+//    }
+
     @RequestMapping("transport/new")
     public String newTransport(Model model){
         model.addAttribute("transport", new Transport());
-        return "transport/addUpdateTransport";
+        return "transport/AddUpdateTransport";
     }
+
     @PostMapping
     @RequestMapping("transport/")
     public String saveOrUpdate(@ModelAttribute Transport transport){
-        Transport transport1 =transportService.save(transport);
-        return "redirect:"+transport1.getTransportId();
+        transportService.save(transport);
+        return "redirect:/transports";
     }
 
     @PostMapping
     @RequestMapping("transport/{id}/update")
-    public String updatePassenger(@PathVariable String id, Model model){
+    public String updateTransport(@PathVariable String id, Model model){
         model.addAttribute("transport",transportService.findTransportById(Long.parseLong(id)));
-        return "/transport/addUpdateTransport";
+        return "transport/AddUpdateTransport";
     }
     @GetMapping("transport/delete/{id}")
-    public String deletePassengerById(Model model, @PathVariable String id){
+    public String deleteTransportById( @PathVariable String id){
         transportService.deleteTransportById(Long.parseLong(id));
         return "redirect:/transports";
     }

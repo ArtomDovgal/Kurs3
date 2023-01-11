@@ -49,31 +49,31 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Number of seats : </label>
-                                    <input type="text" class="form-control" th:field="*{numberOfSeats}" required/>
+                                    <input type="text" class="form-control" required th:field="*{numberOfSeats}" />
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Number of workers:</label>
-                                    <input type="text" class="form-control" th:field="*{numberOfWorkers}" required/>
+                                    <input type="text" class="form-control" required th:field="*{numberOfWorkers}" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Category:</label>
-                                    <input type="text" class="form-control" th:field="*{transportCategory}" required/>
+                                    <input type="text" class="form-control" required th:field="*{transportCategory}" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
-            <div class="row">
-                <div class="col-md-1">
-                    <a href="/transports"><button type="button" class="btn btn-primary">Cancel</button></a>
+                <div class="row">
+                    <div class="col-md-1">
+                        <a href="/transports"><button type="button" class="btn btn-primary">Cancel</button></a>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary">Submit</button></div>
-            </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

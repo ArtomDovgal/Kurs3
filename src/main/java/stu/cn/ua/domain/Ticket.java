@@ -27,7 +27,7 @@ public class Ticket {
   @Column(name = "date_and_time_of_ticket_booking")
   private LocalDateTime dateAndTimeOfTicketBooking;
   @Column(name="price")
-  private long price;
+  private Long price;
 
   @ManyToOne
   @JoinColumn(name = "flightId")

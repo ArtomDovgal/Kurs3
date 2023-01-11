@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Tickets2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0c19217-014d-4024-a8ac-2388d79fd789">
+
+    <field name="ticketId" class="java.lang.Long">
+
+    </field>
+    <field name="ticketCategory" class="TicketCategory">
+
+    </field>
+    <field name="dateOfDepartureOnTheTicket" class="java.time.LocalDateTime">
+
+    </field>
+    <field name="dateAndTimeOfTiketSale" class="java.time.LocalDateTime">
+       </field>
+    <field name="passenger" class="Passenger">
+         </field>
+    <field name="dateAndTimeOfTicketBooking" class="java.time.LocalDateTime">
+      </field>
+    <field name="price" class="java.lang.Long">
+     </field>
+    <field name="flight" class="Flight">
+     </field>
+    <group name="ticket_id">
+        <groupExpression><![CDATA[$F{ticket_id}]]></groupExpression>
+    </group>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="47" splitType="Stretch">
+            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <staticText>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="0" width="555" height="47" uuid="3035baa9-4978-4df2-bee8-1937b1e3554c"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Tickets]]></text>
+            </staticText>
+        </band>
+    </title>
+    <detail>
+        <band height="155" splitType="Stretch">
+            <property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <textField>
+                <reportElement x="80" y="90" width="100" height="30" uuid="03b31738-7fd9-4ff6-ab86-09e4e9fffd74">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c22abd04-fe17-449f-b1a9-e23cac03d12f"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{ticket_category}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="280" y="90" width="100" height="30" uuid="58d30e49-1cae-4c59-b07d-32c36f52aa7c">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="90d1a3bd-6e63-4300-b337-17e26d837d7f"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{date_of_departue_on_the_ticket}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="80" y="120" width="100" height="30" uuid="3711a3b6-e025-4967-a97f-3cc32b4e222d">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="43422fbf-38e8-409e-b6f4-43361ebe805e"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{date_and_time_of_tiket_sale}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="80" y="60" width="100" height="30" uuid="672e3968-ce01-4082-8deb-50b85e0ac593">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="55316762-db62-4d01-ab7a-8b1df130882c"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{passenge_id}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="278" y="119" width="100" height="30" uuid="0d92f0c0-3a80-4f13-ad6b-04f2b7acba76">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d1b3b2e-71f5-43e1-bff5-bda5017767d3"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="190" y="120" width="80" height="30" printWhenGroupChanges="ticket_id" uuid="3c27e584-e28d-44c3-b606-ec2671dcfa32">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d1b3b2e-71f5-43e1-bff5-bda5017767d3"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <text><![CDATA[Price : ]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="280" y="30" width="100" height="30" uuid="ee336971-83af-4180-b302-4cc31a95a2ea">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b3d8bf85-0ae3-462e-807c-c7f05a461a47"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{flight_id}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="-10" y="60" width="80" height="30" printWhenGroupChanges="ticket_id" uuid="46e2e738-d235-41b9-95ec-9a50d7eee463">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d1b3b2e-71f5-43e1-bff5-bda5017767d3"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <text><![CDATA[Passenger_id : ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="-10" y="90" width="80" height="30" printWhenGroupChanges="ticket_id" uuid="50586390-7fad-400f-a778-cc42bb749fbc">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d1b3b2e-71f5-43e1-bff5-bda5017767d3"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <text><![CDATA[Ticket_category : ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="190" y="60" width="80" height="30" printWhenGroupChanges="ticket_id" uuid="4a3e1bf2-f9ee-44d9-a616-dda842d2a7b7">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d1b3b2e-71f5-43e1-bff5-bda5017767d3"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <text><![CDATA[Time_booking: ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="190" y="90" width="80" height="30" printWhenGroupChanges="ticket_id" uuid="c681adae-b15b-4139-bd8b-44ab50cebde4">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d1b3b2e-71f5-43e1-bff5-bda5017767d3"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <text><![CDATA[Departure_time : ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="-10" y="120" width="90" height="30" printWhenGroupChanges="ticket_id" uuid="95d53b52-27de-4fe7-9ae3-87ff6ecdbe0d">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d1b3b2e-71f5-43e1-bff5-bda5017767d3"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <text><![CDATA[Purchase`s_time : ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="190" y="30" width="80" height="30" printWhenGroupChanges="ticket_id" uuid="da6910b1-51b2-481f-b065-5949ce5d0af1">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d1b3b2e-71f5-43e1-bff5-bda5017767d3"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <text><![CDATA[Flight_number: ]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="280" y="61" width="100" height="30" uuid="e987bdaf-d602-45cf-9379-407956588b20">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="37fd8bb7-5ffc-4a19-8299-a5c3b10051f7"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{date_andtime_of_ticket_booking}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="-10" y="31" width="80" height="30" printWhenGroupChanges="ticket_id" uuid="7c789b7d-5ed7-4607-90eb-b99923ed21f7">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d1b3b2e-71f5-43e1-bff5-bda5017767d3"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <text><![CDATA[Ticket_number : ]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="80" y="30" width="100" height="30" uuid="dbae8e2d-e02f-43ff-b9f6-982b85f4f844"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{ticket_id}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <pageFooter>
+        <band height="54" splitType="Stretch">
+            <textField>
+                <reportElement x="280" y="13" width="100" height="25" uuid="361dc848-19a0-473f-be0f-73e23289fbde"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="128" y="10" width="150" height="30" printWhenGroupChanges="ticket_id" uuid="1547cf41-7735-4330-b567-5ea78e7cfc99">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d1b3b2e-71f5-43e1-bff5-bda5017767d3"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Number of tickers on this page: ]]></text>
+            </staticText>
+        </band>
+    </pageFooter>
+    <summary>
+        <band height="46" splitType="Stretch"/>
+    </summary>
+</jasperReport>

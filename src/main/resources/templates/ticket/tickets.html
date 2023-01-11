@@ -39,7 +39,6 @@
 <h1>Tickets</h1>
 <br>
 <div class="btn-group">
-    <a href="/tickets"> <button type="button" class="btn btn-primary" data-toggle="modal">Show all</button></a>
     <a href="/ticket/new"><button type="button" class="btn btn-primary" data-toggle="modal">Add</button></a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Revenue">Revenue</button>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TicketsOfEachCategory">Get amount of tickets of each category</button>
@@ -63,7 +62,6 @@
         <th scope="col">Time of sale</th>
         <th scope="col">Price</th>
         <th scope="col">Passenger</th>
-        <th scope="col">Time of departure</th>
         <th scope="col"> ID flight</th>
     </tr>
     </thead>
@@ -96,7 +94,7 @@
                 <h4 class="modal-title">Revenue</h4>
             </div>
             <div class="modal-body">
-                <form  th:object="${cities}" th:action="@{'/ticket/revenue/'}" method="post">
+                <form  th:object="${city}" th:action="@{'/ticket/revenue/'}" method="post">
 
                     <input th:type="text" th:name="city">
 

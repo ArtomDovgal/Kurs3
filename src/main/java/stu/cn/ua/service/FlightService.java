@@ -9,6 +9,7 @@ import stu.cn.ua.persistence.FlightRepository;
 import stu.cn.ua.persistence.TicketRepository;
 import stu.cn.ua.persistence.TransportRepository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -95,11 +96,11 @@ public class FlightService {
         return flightRepository.findAll();
     }
 
-    //можна додати еррор
-    @Transactional
-    public void delayFlight(Integer days) {
-        if (days > 0) flightRepository.delayFlights(days);
-    }
+//    //можна додати еррор
+//    @Transactional
+//    public void delayFlight(Integer days) {
+//        if (days > 0) flightRepository.delayFlights(days);
+//    }
 
     //на головну флайтів, теж дроп менюшку з усіма ерайвал поінтами
     public Set<Flight> findAllByArrivalPoint(String arrivalPoint) {
@@ -117,8 +118,20 @@ public class FlightService {
         }
         return arrivalPoints;
     }
+
+
     public Set<Flight> searchFlights(String word){
         return flightRepository.searchedFlights(word);
+    }
+
+    public void delayFlight(Integer hours)
+    {
+        for (Flight flight:flightRepository.findAll())
+              {
+                flight.setArrivalTime(flight.getArrivalTime().plusHours(hours));
+                flight.setDepartureTime(flight.getDepartureTime().plusHours(hours));
+                flightRepository.save(flight);
+              }
     }
 
 

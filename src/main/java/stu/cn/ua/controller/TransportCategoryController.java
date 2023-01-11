@@ -28,32 +28,33 @@ public class TransportCategoryController {
         this.transportRepository = transportRepository;
     }
 
-    @GetMapping("/transportcategories")
+    @GetMapping("transportcategories")
     public String getTransportCategories(Model model){
         model.addAttribute("transportcategories",transportCategoryService.findAll());
         model.addAttribute("amountOfTransportsOfEachVehicleType",transportCategoryService.countAmountOfTransportsOfEachVehicleType());
 
-        return "/transportcategory/transportcategories";
+        return "transportcategory/transportcategories";
     }
 
-    @RequestMapping("transportcategory/{id}")
-    public String showTransportCategoryById(@PathVariable String id, Model model)
-    {
-        model.addAttribute("transportcategory",transportCategoryService.findTransportCategoryById(Long.parseLong(id)));
-        return "/transportcategory/transportcategory";
-    }
-    @RequestMapping("/transportcategory/new")
+//    @RequestMapping("transportcategory/{id}")
+//    public String showTransportCategoryById(@PathVariable String id, Model model)
+//    {
+//        model.addAttribute("transportcategory",transportCategoryService.findTransportCategoryById(Long.parseLong(id)));
+//        return "/transportcategory/transportcategory";
+//    }
+
+    @RequestMapping("transportcategory/new")
     public String newTransportCategory(Model model){
         model.addAttribute("transportcategory", new TransportCategory());
         model.addAttribute("allTransports", transportService.findAll());
         model.addAttribute("transportsToAdd", new HashSet<Transport>());
-        return "/transportcategory/addUpdateTransportCategory";
+        return "transportcategory/addUpdateTransportCategory";
     }
     @PostMapping
     @RequestMapping("transportcategory/")
     public String saveOrUpdate(@ModelAttribute TransportCategory transportCategory){
-        TransportCategory transportCategory1 =transportCategoryService.save(transportCategory);
-        return "redirect:"+transportCategory1.getTransportCategoryId();
+        transportCategoryService.save(transportCategory);
+        return "redirect:transportcategories";
     }
 
     @PostMapping
