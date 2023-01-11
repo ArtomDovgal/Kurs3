@@ -1,6 +1,6 @@
 package stu.cn.ua.domain;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import stu.cn.ua.domain.enums.TicketCategory;
 import stu.cn.ua.mapper.TicketMapper;
 

@@ -1,6 +1,6 @@
 package stu.cn.ua.domain;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.HashSet;
