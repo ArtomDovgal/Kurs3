@@ -1,6 +1,7 @@
 package stu.cn.ua.domain;
 
 import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -41,13 +42,13 @@ public class User {
 			inverseJoinColumns = @JoinColumn(
 				            name = "role_id", referencedColumnName = "id"))
 	
-	private Collection<Role> roles;
+	private Set<Role> roles;
 	
 	public User() {
 		
 	}
 	
-	public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
+	public User(String firstName, String lastName, String email, String password, Set<Role> roles) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -85,11 +86,20 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Collection<Role> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
-	public void setRoles(Collection<Role> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 
+	public boolean checkRoles(){
+
+		for (Role role: getRoles()) {
+			if(role.getName() == "ROLE_USER"){
+				return false;
+			}
+		}
+		return true;
+	}
 }

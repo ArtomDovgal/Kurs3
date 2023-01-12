@@ -6,4 +6,5 @@ import stu.cn.ua.mapper.UserRegistrationDto;
 
 public interface UserService extends UserDetailsService{
 	User save(UserRegistrationDto registrationDto);
+
 }

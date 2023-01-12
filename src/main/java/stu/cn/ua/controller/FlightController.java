@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import stu.cn.ua.domain.Flight;
+import stu.cn.ua.domain.User;
 import stu.cn.ua.persistence.FlightRepository;
 import stu.cn.ua.service.FlightService;
 import stu.cn.ua.service.TransportService;

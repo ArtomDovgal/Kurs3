@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="dark"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>FastPrice</title>
@@ -29,9 +30,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="/transports"><h4> Transports </h4></a>
             </li>
+            <span sec:authorize="hasAuthority('ADMIN')">
             <li class="nav-item">
                 <a class="nav-link" href="/transportcategories"><h4> Transport categories </h4></a>
-            </li>
+            </li></span>
             <form th:action="@{/logout}" method="post">
                 <input type="submit" value="Sign Out"/>
             </form>
@@ -65,7 +67,7 @@
         <th scope="col">Arrival time</th>
         <th scope="col">Number of Passengers</th>
         <th scope="col">Transports</th>
-
+        </span>
     </tr>
     </thead>
     <tbody>

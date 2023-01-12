@@ -10,9 +10,12 @@ import org.springframework.stereotype.Service;
 import stu.cn.ua.domain.Role;
 import stu.cn.ua.domain.User;
 import stu.cn.ua.mapper.UserRegistrationDto;
+import stu.cn.ua.persistence.RoleRepository;
 import stu.cn.ua.persistence.UserRepository;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,7 +23,8 @@ public class UserServiceImpl implements UserService{
 
 
 	private UserRepository userRepository;
-
+	@Autowired
+	private RoleRepository roleRepository;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -31,11 +35,12 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User save(UserRegistrationDto registrationDto) {
-
-		User user = new User(registrationDto.getFirstName(), 
+		Set<Role> roles = new HashSet<>();
+		roles.add(roleRepository.findRoleById(1L));
+		User user = new User(registrationDto.getFirstName(),
 				registrationDto.getLastName(), registrationDto.getEmail(),
-				passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
-		
+				passwordEncoder.encode(registrationDto.getPassword()), roles);
+
 		return userRepository.save(user);
 	}
 
@@ -52,5 +57,8 @@ public class UserServiceImpl implements UserService{
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 	}
-	
+	public User findByEmail(String email){
+		return userRepository.findByEmail(email);
+	}
+
 }
