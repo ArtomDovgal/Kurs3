@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FastPrice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href = "style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">FastPrice</a>
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/flights"><h4>Flights </h4></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tickets"><h4> Tickets </h4></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/passengers"><h4> Passengers </h4></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/transports"><h4> Transports </h4></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/transportcategories"><h4> Transport categories </h4></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<h1>Passengers</h1>
+<br>
+<div class="btn-group">
+    <a href="/passengers"><button type="button" class="btn btn-primary">Show all</button></a>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Privilege</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr scope="row" th:each="passenger : ${passengers}">
+        <td scope="col" th:text="${passenger.getPassengerId()}"></td>
+        <td scope="col" th:text="${passenger.getFirstName()}"></td>
+        <td scope="col" th:text="${passenger.getLastName()}"></td>
+        <td scope="col" th:text="${passenger.getPhone()}"></td>
+        <td scope="col" th:text="${passenger.getPrivileges()}"></td>
+        <td scope="col" >
+            <a href="#" th:href="@{'/passenger/delete/' + ${passenger.getPassengerId()}}">
+                <button type="button" class="btn btn-primary">Delete</button></a>
+            <a href="#" th:href="@{'/passenger/' + ${passenger.getPassengerId()} + '/update'}">
+                <button type="button" class="btn btn-primary"> Edit </button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -2,7 +2,8 @@ package stu.cn.ua.domain;
 
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
-import java.time.LocalDateTime;
+import stu.cn.ua.mapper.FlightMapper;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,12 +25,13 @@ public class Flight {
 
   ///////////////
   @Column(name="departure_time")
-  private LocalDateTime departureTime;
+  private String departureTime;
+
   @Column(name="arrival_time")
-  private LocalDateTime arrivalTime;
+  private String arrivalTime;
   ///////////////
 
-  @OneToMany(mappedBy = "flight")
+  @OneToMany(mappedBy = "flight",fetch = FetchType.EAGER)
   private Set<Ticket> tickets = new HashSet<>();
 
   @Column(name="number_of_passengers")
@@ -47,6 +49,16 @@ public class Flight {
 
   public Flight() {
 
+  }
+
+  public Flight(FlightMapper flightMapper) {
+    this.flightId = flightMapper.getFlightId();
+    this.departurePoint = flightMapper.getDeparturePoint();
+    this.arrivalPoint = flightMapper.getArrivalPoint();
+    this.departureTime = flightMapper.getDepartureTime();
+    this.arrivalTime = flightMapper.getArrivalTime();
+    this.tickets = flightMapper.getTickets();
+    this.numberOfPassengers = flightMapper.getNumberOfPassengers();
   }
 
   public Long getFlightId() {
@@ -73,19 +85,19 @@ public class Flight {
     this.arrivalPoint = arrivalPoint;
   }
 
-  public LocalDateTime getDepartureTime() {
+  public String getDepartureTime() {
     return departureTime;
   }
 
-  public void setDepartureTime(LocalDateTime departureTime) {
+  public void setDepartureTime(String departureTime) {
     this.departureTime = departureTime;
   }
 
-  public LocalDateTime getArrivalTime() {
+  public String getArrivalTime() {
     return arrivalTime;
   }
 
-  public void setArrivalTime(LocalDateTime arrivalTime) {
+  public void setArrivalTime(String arrivalTime) {
     this.arrivalTime = arrivalTime;
   }
 

@@ -5,6 +5,7 @@ import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import stu.cn.ua.mapper.TransportMapper;
 
 @Getter
 @Setter
@@ -13,10 +14,11 @@ import lombok.Setter;
 @Table(name = "transport")
 public class Transport {
 
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "transport_id")
-  private long transportId;
+  private Long transportId;
 
   @Column(name = "number_of_seats")
   private Integer numberOfSeats;
@@ -32,11 +34,17 @@ public class Transport {
 
   }
 
-  public long getTransportId() {
+  public Transport(TransportMapper transportMapper) {
+    this.transportId = transportMapper.getTransportId();
+    this.numberOfSeats = transportMapper.getNumberOfSeats();
+    this.numberOfWorkers = transportMapper.getNumberOfWorkers();
+  }
+
+  public Long getTransportId() {
     return transportId;
   }
 
-  public void setTransportId(long transportId) {
+  public void setTransportId(Long transportId) {
     this.transportId = transportId;
   }
 

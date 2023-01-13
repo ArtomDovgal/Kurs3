@@ -38,7 +38,7 @@
 
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-7 col-md-offset-3">
             <form  th:object="${flight}" th:action="@{/flight/}" method="post">
                 <input type="hidden" th:field="*{flightId}"/>
                 <div class="pannel-group">
@@ -50,11 +50,11 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>departureTime:</label>
-                                    <input type="datetime-local" class="form-control" required th:field="*{departureTime}"/>
+                                    <input type="datetime-local" class="form-control"  th:field="*{departureTime}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>arrivalTime:</label>
-                                    <input type="datetime-local" class="form-control" required th:field="*{arrivalTime}"/>
+                                    <input type="datetime-local" class="form-control"  th:field="*{arrivalTime}"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -77,11 +77,11 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Transports:</label>
-                                    <select class="form-control" th:field="*{transports}" multiple="multiple" required>
-                                    <option th:each="transport : ${transports}"
-                                            th:value="${transport.getTransportId()}"
-                                            th:selected="${flight.getTransports().contains(transport)}"
-                                            th:text="${transport.getTransportId()} + ' ' + ${transport.getTransportCategory().model} "></option>
+                                    <select class="form-control" th:field="*{transportIds}" multiple="multiple" required>
+                                        <option th:each="transport : ${transports}"
+                                                th:value="${transport.getTransportId()}"
+                                                th:selected="${flight.getTransportIds().contains(transport.transportId)}"
+                                                th:text="${transport.getTransportId()} + ' ' + ${transport.getTransportCategory().model} "></option>
                                     </select>
                                 </div>
                             </div>

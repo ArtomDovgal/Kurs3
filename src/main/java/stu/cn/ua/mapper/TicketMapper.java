@@ -4,7 +4,6 @@ import javax.persistence.*;
 import stu.cn.ua.domain.Ticket;
 import stu.cn.ua.domain.enums.TicketCategory;
 
-import java.time.LocalDateTime;
 
 public class TicketMapper {
     private Long ticketId;
@@ -12,11 +11,11 @@ public class TicketMapper {
     @Enumerated(EnumType.STRING)
     private TicketCategory ticketCategory;
 
-    private LocalDateTime dateOfDepartueOnTheTicket;
+    private String dateOfDepartueOnTheTicket;
 
-    private LocalDateTime dateAndTimeOfTiketSale;
+    private String dateAndTimeOfTiketSale;
 
-    private LocalDateTime dateAndTimeOfTicketBooking;
+    private String dateAndTimeOfTicketBooking;
 
     private long price;
 
@@ -40,27 +39,27 @@ public class TicketMapper {
         this.ticketCategory = ticketCategory;
     }
 
-    public LocalDateTime getDateOfDepartueOnTheTicket() {
+    public String getDateOfDepartueOnTheTicket() {
         return dateOfDepartueOnTheTicket;
     }
 
-    public void setDateOfDepartueOnTheTicket(LocalDateTime dateOfDepartueOnTheTicket) {
+    public void setDateOfDepartueOnTheTicket(String dateOfDepartueOnTheTicket) {
         this.dateOfDepartueOnTheTicket = dateOfDepartueOnTheTicket;
     }
 
-    public LocalDateTime getDateAndTimeOfTiketSale() {
+    public String getDateAndTimeOfTiketSale() {
         return dateAndTimeOfTiketSale;
     }
 
-    public void setDateAndTimeOfTiketSale(LocalDateTime dateAndTimeOfTiketSale) {
+    public void setDateAndTimeOfTiketSale(String dateAndTimeOfTiketSale) {
         this.dateAndTimeOfTiketSale = dateAndTimeOfTiketSale;
     }
 
-    public LocalDateTime getDateAndTimeOfTicketBooking() {
+    public String getDateAndTimeOfTicketBooking() {
         return dateAndTimeOfTicketBooking;
     }
 
-    public void setDateAndTimeOfTicketBooking(LocalDateTime dateAndTimeOfTicketBooking) {
+    public void setDateAndTimeOfTicketBooking(String dateAndTimeOfTicketBooking) {
         this.dateAndTimeOfTicketBooking = dateAndTimeOfTicketBooking;
     }
 

@@ -124,14 +124,9 @@ public class FlightService {
         return flightRepository.searchedFlights(word);
     }
 
-    public void delayFlight(Integer hours)
-    {
-        for (Flight flight:flightRepository.findAll())
-              {
-                flight.setArrivalTime(flight.getArrivalTime().plusHours(hours));
-                flight.setDepartureTime(flight.getDepartureTime().plusHours(hours));
-                flightRepository.save(flight);
-              }
+    @Transactional
+    public void delayFlight(Integer hours,String arrivalPoint) {
+        flightRepository.delayFlights(hours,arrivalPoint);
     }
 
 

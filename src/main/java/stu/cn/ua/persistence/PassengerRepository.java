@@ -25,6 +25,7 @@ public interface PassengerRepository extends CrudRepository<Passenger,Long> {
     @Procedure(procedureName = "passengerByFullName")
     Set<Passenger> passengerByFullName(String firstName,String lastName);
 
+
     @Query(value = "SELECT * FROM passenger f WHERE :word in(f.phone,f.privileges,f.first_name,f.last_name)",nativeQuery = true)
     Set<Passenger> searchedPassenger( @Param("word")String word);
 }

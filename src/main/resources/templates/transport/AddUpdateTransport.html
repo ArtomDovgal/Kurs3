@@ -43,7 +43,7 @@
                 <div class="pannel-group">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h1 class="panel-title">Edit Recipe Information</h1>
+                            <h1 class="panel-title">Edit/Add Transport</h1>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -59,13 +59,20 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Category:</label>
-                                    <input type="text" class="form-control" required th:field="*{transportCategory}" />
+                                    <select class="form-control" name="select"  th:field="*{transportCategoryId}" required>
+                                        <option th:each="transportcategory : ${transportcategories}"
+                                                th:value="${transportcategory.transportCategoryId}"
+                                                th:selected="${transport.transportCategoryId}"
+                                                th:text="${transportcategory.getTransportCategoryId()} +' - '
+                                                + ${transportcategory.model} + ' - ' + ${transportcategory.vehicleType}">
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" >
                     <div class="col-md-1">
                         <a href="/transports"><button type="button" class="btn btn-primary">Cancel</button></a>
                     </div>

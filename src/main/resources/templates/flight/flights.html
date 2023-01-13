@@ -18,45 +18,88 @@
 
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
+
+            <span sec:authorize="hasAnyAuthority('USER','ADMIN')">
             <li class="nav-item active">
                 <a class="nav-link" href="/flights"><h4>Flights </h4></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/tickets"><h4> Tickets </h4></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/passengers"><h4> Passengers </h4></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/transports"><h4> Transports </h4></a>
-            </li>
+            </span>
+
+            <span sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                <li class="nav-item">
+                    <a class="nav-link" href="/tickets"><h4> Tickets </h4></a>
+                </li>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN')">
+                <li class="nav-item">
+                    <a class="nav-link" href="/passengers"><h4> Passengers </h4></a>
+                </li>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN')">
+                <li class="nav-item">
+                    <a class="nav-link" href="/transports"><h4> Transports </h4></a>
+                </li>
+            </span>
+
             <span sec:authorize="hasAuthority('ADMIN')">
             <li class="nav-item">
-                <a class="nav-link" href="/transportcategories"><h4> Transport categories </h4></a>
-            </li></span>
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out"/>
-            </form>
+                <a class="nav-link" href="/transportcategories" ><h4> Transport categories </h4></a>
+            </li>
+            </span>
         </ul>
+
+
+        <form style="display: flex;flex-direction: column;align-items: flex-end;"
+            th:action="@{/logout}" method="post">
+            <input style="border:none"type="submit" value="Sign Out"/>
+
+            </form>
+
     </div>
 </nav>
 <br>
 <h1>Flights</h1>
 <br>
-<div class="btn-group">
-    <button style="margin-left: 20px; margin-right: 20px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#delayModal">Delay</button>
-    <button style="margin-right: 20px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ArrivalPlaceModal">Find by Arrival place</button>
-    <a href="flight/new"><button type="button" class="btn btn-primary">Add</button></a>
-</div>
-<br>
-<form class="form-inline" action="/flights/search/" method="post">
+<div style="padding-left: 15px;"class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <span sec:authorize="hasAuthority('ADMIN')">
+    
+    <div style="padding-left: 10px;"class="btn-group mr-2" role="group" aria-label="First group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#delayModal">Delay</button>
+    </div>
+
+    <div style="padding-left: 10px;" class="btn-group mr-2" role="group" aria-label="Second group">
+     <a href="flight/new"><button type="button" class="btn btn-success">Add</button></a>
+    </div>
+
+        <form  th:action="@{'/flights/logs/'}" method="post">
+        <div style="padding-left: 10px;" class="btn-group mr-2" role="group" aria-label="Second group">
+         <a href="flight/flightLog"><button type="submit" class="btn btn-success">Open log file</button></a>
+    </div>
+            </form>
+    </span>
+
+    <span sec:authorize="hasAnyAuthority('ADMIN','USER')">
+    <div style="padding-left: 10px;" class="btn-group" role="group" aria-label="Third group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ArrivalPlaceModal">Find by Arrival place</button>
+    </div>
+    </span>
+
+
+    <form style="display: flex;flex-direction: column;align-items: flex-end;" class="form-inline" action="/flights/search/" method="post">
     <button class="btn btn-outline-success btn-primary pull-right" type="submit">Search</button>
     <input class="form-control pull-right" th:name="searchWord" type="text"
            placeholder="Search" required aria-label="Search">
     <div class="invalid-feedback">
         Please provide a valid city.
     </div>
-</form>
+    </form>
+
+
+  </div>
+<br>
+
 <table class="table">
     <thead>
     <tr>
@@ -85,11 +128,23 @@
                         th:text="${transport.getTransportId()} + ' ' + ${transport.getTransportCategory().model} "></option>
             </select>
         </td>
+
         <td scope="col" >
+            <span sec:authorize="hasAuthority('ADMIN')">
             <a href="#" th:href="@{'/flight/delete/' + ${flight.getFlightId()}}">
-                <button type="button" class="btn btn-primary"> Delete </button></a>
+                <button type="button" class="btn btn-danger"> Delete </button></a>
+
         <a href="#" th:href="@{'/flight/' + ${flight.getFlightId()} + '/update'}">
-            <button type="button" class="btn btn-primary"> Edit </button></a></td>
+            <button type="button" class="btn btn-warning"> Edit </button></a>
+        </span>
+
+            <span sec:authorize="hasAnyAuthority('USER','ADMIN')">
+            <a href="#" th:href="@{'/ticket/new/'+${flight.getFlightId()}}">
+                <button type="button" class="btn btn-primary"> Get a ticket </button></a>
+            </span>
+            </form>
+        </td>
+
     </tr>
     </tbody>
 </table>
@@ -99,11 +154,17 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Revenue</h4>
+                <h4 class="modal-title">Delay flights</h4>
             </div>
             <div class="modal-body">
                 <form  th:object="${hours}" th:action="@{'/flights/delayflight/'}" method="post">
-
+                    <p>Select arrival point : </p>
+                    <select name="arrivalPoints" th:name="arrivalPoint">
+                        <option th:each="arrivalPoint : ${arrivalPoints}"
+                                th:value="${arrivalPoint}"
+                                th:text="${arrivalPoint} "></option>
+                    </select>
+                    <p>Select number of hours : </p>
                     <input type="number" th:name="hours">
 
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -126,13 +187,13 @@
             </div>
             <div class="modal-body">
                 <form  th:object="${arrivalPoints}" th:action="@{'/flights/byarrivalpoint/'}" method="post">
-                <select name="Transports" th:name="arrivalPoint">
-                    <option th:each="arrivalPoint : ${arrivalPoints}"
-                            th:value="${arrivalPoint}"
-                            th:text="${arrivalPoint} "></option>
-                </select>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    <select name="Transports" th:name="arrivalPoint">
+                        <option th:each="arrivalPoint : ${arrivalPoints}"
+                                th:value="${arrivalPoint}"
+                                th:text="${arrivalPoint} "></option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -141,5 +202,6 @@
 
     </div>
 </div>
+
 </body>
 </html>

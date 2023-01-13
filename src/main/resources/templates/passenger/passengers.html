@@ -39,10 +39,9 @@
 <h1>Passengers</h1>
 <br>
 <div class="btn-group">
+
     <button type="button" class="btn btn-primary"
             data-toggle="modal" data-target="#findByFullName">Find by fullname</button>
-    <a href="/passengers">
-        <button type="button" class="btn btn-primary">Show all</button></a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#PassengerOfEachPrivilege">Get amount of passengers of each privilege</button>
     <a href="/passenger/new"><button type="button" class="btn btn-primary">Add</button></a>
 </div>
@@ -93,11 +92,25 @@
                 <h4 class="modal-title">Find passenger: </h4>
             </div>
             <form th:action="@{'/passengers/findByFullName/'}" method="post">
-            <p th:text="'Firstname : '"></p>
-            <input type="text" th:name = "firstname">
-            <p th:text="'Lastname : '"></p>
-            <input type="text" th:name = "lastname">
-            <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="md-1">
+                    <div class="row">
+
+                        <div class="col-md-3 ">
+                            <label th:text="'Firstname : '"></label></div>
+                        <div class="col-md-2 ">
+                            <input type="text" th:name = "firstname"></div></div>
+                    <div class="row">
+                        <div class="col-md-3 ">
+                            <label th:text="'Lastname : '"></label></div>
+                        <div class="col-md-2 ">
+                            <input type="text" th:name = "lastname"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 ">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="modal-footer">
@@ -132,8 +145,8 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
-
     </div>
 </div>
+
 </body>
 </html>

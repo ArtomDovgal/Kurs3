@@ -12,6 +12,8 @@ import stu.cn.ua.domain.User;
 import stu.cn.ua.mapper.UserRegistrationDto;
 import stu.cn.ua.persistence.RoleRepository;
 import stu.cn.ua.persistence.UserRepository;
+import stu.cn.ua.security.UserService;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -19,7 +21,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 
 	private UserRepository userRepository;

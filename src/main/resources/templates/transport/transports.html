@@ -50,7 +50,6 @@
     <tr>
         <th scope="col">Id</th>
         <th scope="col">Number Of Seats</th>
-        <th scope="col">NumberOfSeats</th>
         <th scope="col">Category</th>
         <th scope="col">Number Of Workers</th>
 
@@ -60,14 +59,13 @@
     <tr scope="row" th:each="transport : ${transports}">
         <td scope="col" th:text="${transport.getTransportId()}"></td>
         <td scope="col" th:text="${transport.getNumberOfSeats()}"></td>
-        <td scope="col" th:text="${transport.getNumberOfSeats()}"></td>
         <td scope="col" th:text="${transport.getTransportCategory().getTransportCategoryId()}"></td>
         <td scope="col" th:text="${transport.getNumberOfWorkers()}"></td>
 
         <td scope="col" ><a href="#" th:href="@{'/transport/delete/'+ ${transport.getTransportId()}}">
             <button type="button" class="btn btn-primary"> Delete</button></a>
             <a href="#" th:href="@{'/transport/' + ${transport.getTransportId()} + '/update'}">
-                <button type="button" class="btn btn-outline-primary"> Edit </button></a>
+                <button type="button" class="btn btn-primary"> Edit </button></a>
         </td>
     </tr>
     </tbody>
@@ -75,14 +73,30 @@
 <!--fsdf-->
 <div id="SumAllSeats" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Delay Flights</h4>
+                <h4 class="modal-title">Total amount of seats</h4>
             </div>
-            <p th:text="'Amount of all seats' + ${sumAllSeats}"></p>
-
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col" th:each="num:${transports}">
+                        <p th:text="${num.getTransportId()}"></p>
+                        </th>
+                        <th scope="col"> <p th:text="'Total amount of seats'"></p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                         <td scope="row" th:each="element1:${transports}">
+                         <p th:text="${element1.getNumberOfSeats()}"></p>
+                         </td>
+                        <td><p th:text="${sumAllSeats}"></p></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

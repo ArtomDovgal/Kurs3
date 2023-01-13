@@ -37,24 +37,6 @@ public class TicketService {
 
             if (flight!=null)
             {
-                // Transport[] arr = (Transport[]) flight.getTransports().toArray();
-                //  Optional<Transport> first = flight.getTransports().stream().findFirst();
-                // Integer numberOfSeats = Arrays.stream(arr).findFirst().get().getNumberOfSeats();
-                // Transport transport= first.get();
-
-
-//            Iterator iter = flight.getTransports().iterator();
-//            Transport transport1 = (Transport) iter.next();
-//            Integer numberOfSeats = transport1.getNumberOfSeats();
-//
-//            if(flight.getNumberOfPassengers() < numberOfSeats)
-//            {
-//                flight.getTickets().add(ticket);
-//            flightRepository.save(flight);
-//            ticket.setFlight(flight);
-//        }
-//            else
-//                return null;
                 flight.getTickets().add(ticket);
                 flightRepository.save(flight);
                 ticket.setFlight(flight);

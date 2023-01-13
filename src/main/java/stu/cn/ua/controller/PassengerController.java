@@ -19,44 +19,40 @@ public class PassengerController {
 
     @PostMapping
     @RequestMapping("passenger/search/")
-    public String flightsSearch(@RequestParam(name = "searchWord") String searchWord,Model model){
-        model.addAttribute("flights",passengerService.searchPassenger(searchWord));
+    public String flightsSearch(@RequestParam(name = "searchWord") String searchWord, Model model) {
+        model.addAttribute("flights", passengerService.searchPassenger(searchWord));
         return "passenger/passengers";
     }
 
     @GetMapping("passengers")
-    public String getPassengers(Model model){
-        model.addAttribute("passengers",passengerService.findAll());
-        model.addAttribute("amountOfPassengerOfEachPrivilege",passengerService.countAmountOfPassengersOfEachPrivileges());
+    public String getPassengers(Model model) {
+        model.addAttribute("passengers", passengerService.findAll());
+        model.addAttribute("amountOfPassengerOfEachPrivilege", passengerService.countAmountOfPassengersOfEachPrivileges());
         return "passenger/passengers";
     }
-    @RequestMapping("passenger/{id}")
-    public String showPassengerById(@PathVariable String id, Model model)
-    {
-        model.addAttribute("passenger",passengerService.findPassengerById(Long.parseLong(id)));
-        return "passenger/passenger";
-    }
+
     @RequestMapping("passenger/new")
-    public String newPassenger(Model model){
+    public String newPassenger(Model model) {
         model.addAttribute("passenger", new Passenger());
         return "passenger/AddUpdatePassenger";
     }
+
     @PostMapping
     @RequestMapping("passenger/")
-    public String saveOrUpdate(@ModelAttribute Passenger passenger){
-       passengerService.save(passenger);
+    public String saveOrUpdate(@ModelAttribute Passenger passenger) {
+        passengerService.save(passenger);
         return "redirect:/passengers";
     }
+
     @PostMapping
     @RequestMapping("passenger/{id}/update")
-    public String updatePassenger(@PathVariable String id, Model model){
-        model.addAttribute("passenger",passengerService.findPassengerById(Long.parseLong(id)));
+    public String updatePassenger(@PathVariable String id, Model model) {
+        model.addAttribute("passenger", passengerService.findPassengerById(Long.parseLong(id)));
         return "passenger/AddUpdatePassenger";
     }
 
-
     @GetMapping("passenger/delete/{id}")
-    public String deletePassengerById(@PathVariable String id){
+    public String deletePassengerById(@PathVariable String id) {
         passengerService.deleteByPassengerId(Long.parseLong(id));
         return "redirect:/passengers";
     }
@@ -64,8 +60,8 @@ public class PassengerController {
     @PostMapping
     @RequestMapping("/passengers/findByFullName/")
     public String findPassenger(@RequestParam(name = "firstname") String firstname,
-                                  @RequestParam(name = "lastname") String lastname, Model model){
-        model.addAttribute("passengers",passengerService.findByFirstNameAndLastName(firstname,lastname));
-        return "passenger/passengers";
+                                @RequestParam(name = "lastname") String lastname, Model model) {
+        model.addAttribute("passengers", passengerService.findByFirstNameAndLastName(firstname, lastname));
+        return "passenger/findPassengerByFullName";
     }
 }

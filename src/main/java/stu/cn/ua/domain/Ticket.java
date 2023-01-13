@@ -4,7 +4,6 @@ import javax.persistence.*;
 import stu.cn.ua.domain.enums.TicketCategory;
 import stu.cn.ua.mapper.TicketMapper;
 
-import java.time.LocalDateTime;
 
 
 @Entity
@@ -19,13 +18,13 @@ public class Ticket {
   private TicketCategory ticketCategory;
 
   @Column(name = "date_of_departure_on_the_ticket")
-  private LocalDateTime dateOfDepartureOnTheTicket;
+  private String dateOfDepartureOnTheTicket;
 
   @Column(name = "date_and_time_of_ticket_sale")
-  private LocalDateTime dateAndTimeOfTiketSale;
+  private String dateAndTimeOfTiketSale;
 
   @Column(name = "date_and_time_of_ticket_booking")
-  private LocalDateTime dateAndTimeOfTicketBooking;
+  private String dateAndTimeOfTicketBooking;
   @Column(name="price")
   private Long price;
 
@@ -65,27 +64,27 @@ public class Ticket {
     this.ticketCategory = ticketCategory;
   }
 
-  public LocalDateTime getDateOfDepartureOnTheTicket() {
+  public String getDateOfDepartureOnTheTicket() {
     return dateOfDepartureOnTheTicket;
   }
 
-  public void setDateOfDepartureOnTheTicket(LocalDateTime dateOfDepartureOnTheTicket) {
+  public void setDateOfDepartureOnTheTicket(String dateOfDepartureOnTheTicket) {
     this.dateOfDepartureOnTheTicket = dateOfDepartureOnTheTicket;
   }
 
-  public LocalDateTime getDateAndTimeOfTiketSale() {
+  public String getDateAndTimeOfTiketSale() {
     return dateAndTimeOfTiketSale;
   }
 
-  public void setDateAndTimeOfTiketSale(LocalDateTime dateAndTimeOfTiketSale) {
+  public void setDateAndTimeOfTiketSale(String dateAndTimeOfTiketSale) {
     this.dateAndTimeOfTiketSale = dateAndTimeOfTiketSale;
   }
 
-  public LocalDateTime getDateAndTimeOfTicketBooking() {
+  public String getDateAndTimeOfTicketBooking() {
     return dateAndTimeOfTicketBooking;
   }
 
-  public void setDateAndTimeOfTicketBooking(LocalDateTime dateAndTimeOfTicketBooking) {
+  public void setDateAndTimeOfTicketBooking(String dateAndTimeOfTicketBooking) {
     this.dateAndTimeOfTicketBooking = dateAndTimeOfTicketBooking;
   }
 

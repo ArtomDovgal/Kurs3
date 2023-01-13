@@ -19,11 +19,12 @@ public interface FlightRepository extends CrudRepository<Flight,Long> {
 
     Set<Flight> findAll();
 
+    Flight findByFlightId(Long id);
     Set<Flight> findAllByNumberOfPassengersGreaterThan(Integer price);
 
-//    @Transactional
-//    @Procedure(name = "delayFlights")
-//    void delayFlights(Integer numberOfdays);
+    @Transactional
+    @Procedure(procedureName = "delayFlights")
+    void delayFlights(Integer numberOfDays, String arrivalPoint);
 
     Set<Flight> findAllByArrivalTimeBefore(LocalDateTime arrivalTime);
 

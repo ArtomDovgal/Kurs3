@@ -53,8 +53,13 @@
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Vehicle type:</label>
-                                    <input type="text" class="form-control" required th:field="*{vehicleType}"/>
-                                </div>
+                                        <select class="form-control" name="select"  required th:field="*{vehicleType}"> <!--Supplement an id here instead of using 'name'-->
+                                            <option value="BUS">BUS</option>
+                                            <option value="TRAIN">TRAIN</option>
+                                            <option value="PLANE">PLANE</option>
+                                            <option value="SHIP">SHIP</option>
+                                        </select>
+                                    </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">

@@ -34,7 +34,7 @@ public class Passenger {
 
   private String phone;
 
-  @OneToMany(mappedBy = "passenger")
+  @OneToMany(mappedBy = "passenger",fetch = FetchType.EAGER)
   private Set<Ticket> tickets = new HashSet<>();
 
   public Passenger() {

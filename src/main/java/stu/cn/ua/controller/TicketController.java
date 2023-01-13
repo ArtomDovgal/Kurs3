@@ -38,12 +38,7 @@ public class TicketController {
         this.passengerService = passengerService;
         this.flightService = flightService;
     }
-    @RequestMapping("/ticket/{id}")
-    public String showTicketById(@PathVariable String id, Model model)
-    {
-        model.addAttribute("ticket",ticketService.findById(Long.parseLong(id)));
-        return "ticket/ticket";
-    }
+
     @RequestMapping("/ticket/new")
     public String newTicket(Model model){
         model.addAttribute("flights",flightService.getAll());
@@ -57,7 +52,7 @@ public class TicketController {
         Ticket ticket  = new Ticket(ticketMapper);
         Long passengerId = passengerService.findPassengerById(ticketMapper.getPassenger_id()).getPassengerId();
         Long flightId= flightService.findFlightById(ticketMapper.getFlight_id()).getFlightId();
-        Ticket ticket1=ticketService.save(ticket,flightId,passengerId);
+        ticketService.save(ticket,flightId,passengerId);
         return "redirect:/tickets";
     }
     @PostMapping
@@ -85,13 +80,16 @@ public class TicketController {
         return "/ticket/revenue";
     }
 
+
+
+
     @PostMapping
     @RequestMapping("tickets/search/")
     public String ticketsSearch(@RequestParam(name = "searchWord") String searchWord,Model model){
         model.addAttribute("tickets",ticketService.searchTickets(searchWord));
         model.addAttribute("cities",ticketService.getAllCities());
-        model.addAttribute("amountOfTicketsOfEveryCategory",
-                ticketService.countAmountOfTicketsOfEveryCategory());
+//        model.addAttribute("amountOfTicketsOfEveryCategory",
+//                ticketService.countAmountOfTicketsOfEveryCategory());
         return "/ticket/tickets";
     }
 }

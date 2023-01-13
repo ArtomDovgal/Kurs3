@@ -14,28 +14,17 @@ public class MainController {
 
 	@Autowired
 	UserServiceImpl userService;
-	@Autowired
-	private final FlightService flightService;
 
 	String string;
 
-	public MainController(FlightService flightService) {
-		this.flightService = flightService;
-	}
-
 	@GetMapping("/login")
 	public String login() {
-		return "login";
+		return "security/login";
 	}
-	
+
 	@GetMapping("/")
-	public String home(@RequestParam("username") String username,Model model) {
-		User user = userService.findByEmail(username);
-		model.addAttribute("user",user);
-		model.addAttribute("flights", flightService.getAll());
-		model.addAttribute("hours",Integer.valueOf(0));
-		model.addAttribute("arrivalPoints",flightService.getAllArrivalPoints());
-		return "flight/flights";
+	public String home() {
+		return "redirect:/flights";
 	}
 
 	public String getString() {
